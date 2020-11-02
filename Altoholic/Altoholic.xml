@@ -231,6 +231,7 @@
 					<OnClick>
 						if IsAddOnLoaded("Altoholic_Search") then
 							Altoholic.Tabs.Search:Reset()
+                            Altoholic.ItemFilters:ClearFilters()
 						end
 					</OnClick>
 				</Scripts>
