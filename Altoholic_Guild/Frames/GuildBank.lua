@@ -99,9 +99,9 @@ addon:Controller("AltoholicUI.GuildBank", { "AltoholicUI.Formatter", function(fo
 					
 					   itemButton:SetItem(itemID, itemLink, rarity)
 					   itemButton:SetCount(itemCount)
-					-- if isBattlePet then
-						-- itemButton:SetIcon(itemID)	-- override the icon if one is returned by datastore
-					-- end
+					   if isBattlePet then
+					       itemButton:SetIcon(itemID)	-- override the icon if one is returned by datastore
+					   end
 					   itemButton:Show()
                     end
 				end
