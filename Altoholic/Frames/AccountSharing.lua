@@ -628,7 +628,7 @@ local AvailableContentScrollFrame_Desc = {
 					item:Show()
 				end,
 			GetDate = function(self, line)
-					return colors.lightBlue..date("%m/%d/%Y %H:%M", line.lastUpdate)
+					return colors.lightBlue..date("%d/%b/$y %H:%M", line.lastUpdate)
 				end,
 		},
 		[GUILD_BANKTAB_LINE] = {
@@ -642,7 +642,7 @@ local AvailableContentScrollFrame_Desc = {
 					_G[ entry.."Collapse" ]:Hide()
 				end,
 			GetDate = function(self, line)
-					return colors.lightBlue..date("%m/%d/%Y %H:%M", line.lastUpdate)
+					return colors.lightBlue..date("%d/%b/$y %H:%M", line.lastUpdate)
 				end,
 		},
 		[CHARACTER_HEADER_LINE] = {
@@ -670,7 +670,7 @@ local AvailableContentScrollFrame_Desc = {
 					if last == line.lastUpdate then
 						return colors.green.."Up-to-date"
 					else
-						return colors.lightBlue..date("%m/%d/%Y %H:%M", line.lastUpdate)
+						return colors.lightBlue..date("%d/%b/$y %H:%M", line.lastUpdate)
 					end
 				end,
 		},
@@ -691,7 +691,7 @@ local AvailableContentScrollFrame_Desc = {
 					if last == line.lastUpdate then
 						return colors.green.."Up-to-date"
 					else
-						return colors.lightBlue..date("%m/%d/%Y %H:%M", line.lastUpdate)
+						return colors.lightBlue..date("%d/%b/$y %H:%M", line.lastUpdate)
 					end
 				end,
 		},
@@ -706,7 +706,7 @@ local AvailableContentScrollFrame_Desc = {
 					_G[ entry.."Collapse" ]:Hide()
 				end,
 			GetDate = function(self, line)
-					return colors.lightBlue..date("%m/%d/%Y %H:%M", line.lastUpdate)
+					return colors.lightBlue..date("%d/%b/$y %H:%M", line.lastUpdate)
 				end,
 		},
 	},
