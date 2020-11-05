@@ -24,6 +24,8 @@ addon:Controller("AltoholicUI.AchievementRow", {
 		local character
 		local achievementID
         
+        CHARS_PER_FRAME = AltoholicTabAchievementsAchievements.ScrollFrame.numCols
+        
         local current_start_col, start_char_index = addon:GetAchievementsCurrentColumnScrollInfo()		
         local current_end_col = current_start_col + CHARS_PER_FRAME
         if current_end_col > 50 then current_end_col = 50 end
