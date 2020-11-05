@@ -47,13 +47,15 @@ local classMasks = {
 	[2048] = "DEMONHUNTER"
 }	
 
+local REVERSE_FACTION_LABELS = tInvert(FACTION_LABELS)
+
 local function FormatSetDescription(setInfo)
 	local line1 = format("%s%s", colors.white, setInfo.label)
 	local line2 = ""
 	local description = (setInfo.description) and format("%s - %s", colors.cyan, setInfo.description) or ""
 
 	if setInfo.requiredFaction then
-		local icon = icons[(setInfo.requiredFaction == FACTION_ALLIANCE) and "Alliance" or "Horde"]
+		local icon = icons[PLAYER_FACTION_GROUP[REVERSE_FACTION_LABELS[setInfo.requiredFaction]]]
 		line1 = format("%s %s", line1, format(TEXTURE_FONT, icon, 18, 18))
 	end
 
@@ -397,8 +399,7 @@ local function InitTransmogSetsInfo(sets)
 
 					setInfo.label = set.label
 					setInfo.description = set.description
-					setInfo.requiredFaction = (set.requiredFaction == "Alliance") and FACTION_ALLIANCE or FACTION_HORDE
-                    print(setInfo.requiredFaction)
+					setInfo.requiredFaction = FACTION_LABELS[PLAYER_FACTION_GROUP[set.requiredFaction]]
 				
 					-- keep track of pvp descriptions
 					if set.description and setInfo.isPVP then
