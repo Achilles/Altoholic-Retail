@@ -1,7 +1,7 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="MessageBox.lua"></Script>
 	
-	<Frame name="AltoMessageBox" toplevel="true" parent="UIParent" hidden="true" inherits="BackdropTemplate">
+	<Frame name="AltoMessageBox" frameStrata="HIGH" toplevel="true" parent="UIParent" hidden="true" inherits="BackdropTemplate">
 		<Size x="323" y="100" />
 		<Anchors>
 			<Anchor point="CENTER" x="0" y="-10" />
