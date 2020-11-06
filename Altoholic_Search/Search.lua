@@ -644,7 +644,7 @@ local currentResultLocation	-- what is actually being searched (bags, bank, equi
 
 local MYTHIC_KEYSTONE = 158923
 
-local function VerifyItem(item, itemCount, itemLink, isBattlePet, followUpFunc)
+local function VerifyItem(item, itemCount, itemLink, isBattlePet)
 	if type(item) == "string" then		-- convert a link to its item id, only data saved
 	
 		if item:match("|Hkeystone:") then
@@ -658,27 +658,21 @@ local function VerifyItem(item, itemCount, itemLink, isBattlePet, followUpFunc)
 		itemLink = nil
 	end
 	
-    local c = currentResultType
-    local k = currentResultKey
-    local l = currentResultLocation
-	filters:SetSearchedItem(item, (item ~= MYTHIC_KEYSTONE) and itemLink or nil, isBattlePet, function()
-        	-- local isOK = filters:ItemPassesFilters((item == 138019))	-- debug item  
-        	
-        	if filters:ItemPassesFilters() then			-- All conditions ok ? save it
-        		ns:AddResult( {
-        			linetype = c,			-- PLAYER_ITEM_LINE or GUILD_ITEM_LINE 
-        			id = item,
-        			link = itemLink,
-        			source = k,				-- character or guild key in DataStore
-        			count = itemCount,
-        			location = l,
-        			isBattlePet = isBattlePet
-        		} )
-        	end
-            if followUpFunc then
-                followUpFunc()
-            end
-    end)
+    filters:SetSearchedItem(item, (item ~= MYTHIC_KEYSTONE) and itemLink or nil, isBattlePet)
+	-- local isOK = filters:ItemPassesFilters((item == 138019))	-- debug item 
+	local isOK = filters:ItemPassesFilters()
+	
+	if isOK then			-- All conditions ok ? save it
+		ns:AddResult( {
+			linetype = currentResultType,			-- PLAYER_ITEM_LINE or GUILD_ITEM_LINE 
+			id = item,
+			link = itemLink,
+			source = currentResultKey,				-- character or guild key in DataStore
+			count = itemCount,
+			location = currentResultLocation,
+			isBattlePet = isBattlePet
+		} )
+	end
 end
 
 local function CraftMatchFound(spellID, value)
@@ -688,7 +682,7 @@ local function CraftMatchFound(spellID, value)
 	end
 end
 
-local function BrowseCharacter(character, followUpFunc)
+local function BrowseCharacter(character)
 
 	currentResultType = PLAYER_ITEM_LINE	
 	currentResultKey = character
@@ -716,7 +710,7 @@ local function BrowseCharacter(character, followUpFunc)
 				itemID, itemLink, itemCount, isBattlePet = DataStore:GetSlotInfo(container, slotID)
 				
 				if itemID then
-					VerifyItem(itemID, itemCount, itemLink, isBattlePet, followUpFunc)
+					VerifyItem(itemID, itemCount, itemLink, isBattlePet)
 				end
 			end
 		end
@@ -727,7 +721,7 @@ local function BrowseCharacter(character, followUpFunc)
 	local inventory = DataStore:GetInventory(character)
 	if inventory then
 		for _, v in pairs(inventory) do
-			VerifyItem(v, 1, v, followUpFunc)
+			VerifyItem(v, 1, v)
 		end
 	end
 	
@@ -737,7 +731,7 @@ local function BrowseCharacter(character, followUpFunc)
 		for i = 1, num do
 			local _, count, link = DataStore:GetMailInfo(character, i)
 			if link then
-				VerifyItem(link, count, link, followUpFunc)
+				VerifyItem(link, count, link)
 			end
 		end
 	end
@@ -749,7 +743,7 @@ local function BrowseCharacter(character, followUpFunc)
             local isGoblin, itemID, count, name, price1, price2, timeLeft = DataStore:GetAuctionHouseItemInfo(character, "Auctions", i)
             local _, itemLink = GetItemInfo(itemID)
             if itemLink then
-                VerifyItem(itemLink, count, itemLink, followUpFunc)
+                VerifyItem(itemLink, count, itemLink)
             end
         end
     end
@@ -784,10 +778,10 @@ local function BrowseCharacter(character, followUpFunc)
 	currentResultLocation = nil
 end
 
-local function BrowseRealm(realm, account, bothFactions, followUpFunc)
+local function BrowseRealm(realm, account, bothFactions)
 	for characterName, character in pairs(DataStore:GetCharacters(realm, account)) do
 		if bothFactions or DataStore:GetCharacterFaction(character) == UnitFactionGroup("player") then
-			BrowseCharacter(character, followUpFunc)
+			BrowseCharacter(character)
 		end
 	end
 	
@@ -806,7 +800,7 @@ local function BrowseRealm(realm, account, bothFactions, followUpFunc)
 							local id, link, count, isBattlePet = DataStore:GetSlotInfo(tab, slotID)
 							if id then
 								link = link or id
-								VerifyItem(link, count, link, isBattlePet, followUpFunc)
+								VerifyItem(link, count, link, isBattlePet)
 							end
 						end
 					end
@@ -841,39 +835,6 @@ function ns:FindItem(searchType, searchSubType)
 
 	-- Set Filters
 	local value = AltoholicFrame_SearchEditBox:GetText() or ""
-
-	local function followUpFunc()
-        -- Does anything change if this is commented out?
-        --filters:ClearFilters()
-    	
-    	if not AltoholicTabSearch:IsVisible() then
-    		addon.Tabs:OnClick("Search")
-    	end
-    	
-    	if ns:GetNumResults() == 0 then
-    		if currentValue == "" then 
-    			AltoholicTabSearch.Status:SetText(L["No match found!"])
-    		else
-    			AltoholicTabSearch.Status:SetText(value .. L[" not found!"])
-    		end
-    	end
-
-    	
-    	if SearchLoots then
-    		addon.Tabs.Search:SetMode("loots")
-    		-- if addon:GetOption("UI.Tabs.Search.SortDescending") then 		-- descending sort ?
-    			-- AltoholicTabSearch.SortButtons.Sort3.ascendingSort = true		-- say it's ascending now, it will be toggled
-    			-- ns:SortResults(AltoholicTabSearch.SortButtons.Sort3, "iLvl")
-    		-- else
-    			-- AltoholicTabSearch.SortButtons.Sort3.ascendingSort = nil
-    			-- ns:SortResults(AltoholicTabSearch.SortButtons.Sort3, "iLvl")
-    		-- end
-    	else
-    		addon.Tabs.Search:SetMode("realm")
-    	end
-    
-    	ns:Update()
-    end
     	
 	currentValue = strlower(value)
 
@@ -924,24 +885,24 @@ function ns:FindItem(searchType, searchSubType)
 	
 	local SearchLoots
 	if searchLocation == SEARCH_THISCHAR then
-		BrowseCharacter(DataStore:GetCharacter(), followUpFunc)
+		BrowseCharacter(DataStore:GetCharacter())
 	elseif searchLocation == SEARCH_THISREALM_THISFACTION or	searchLocation == SEARCH_THISREALM_BOTHFACTIONS then
-		BrowseRealm(GetRealmName(), THIS_ACCOUNT, (searchLocation == SEARCH_THISREALM_BOTHFACTIONS), followUpFunc)
+		BrowseRealm(GetRealmName(), THIS_ACCOUNT, (searchLocation == SEARCH_THISREALM_BOTHFACTIONS))
 	elseif searchLocation == SEARCH_ALLREALMS then
 		for realm in pairs(GetAllRealms()) do
-			BrowseRealm(realm, THIS_ACCOUNT, true, followUpFunc)
+			BrowseRealm(realm, THIS_ACCOUNT, true)
 		end
 	elseif searchLocation == SEARCH_ALLACCOUNTS then
 		-- this account first ..
 		for realm in pairs(GetAllRealms()) do
-			BrowseRealm(realm, THIS_ACCOUNT, true, followUpFunc)
+			BrowseRealm(realm, THIS_ACCOUNT, true)
 		end
 		
 		-- .. then all other accounts
 		for account in pairs(DataStore:GetAccounts()) do
 			if account ~= THIS_ACCOUNT then
 				for realm in pairs(GetAllRealms(account)) do
-					BrowseRealm(realm, account, true, followUpFunc)
+					BrowseRealm(realm, account, true)
 				end
 			end
 		end
@@ -950,9 +911,36 @@ function ns:FindItem(searchType, searchSubType)
 		addon.Loots:Find()
 	end
     
-    followUpFunc()
-    
-    ongoingSearch = nil 	-- search done
+	filters:ClearFilters()
+	
+	if not AltoholicTabSearch:IsVisible() then
+		addon.Tabs:OnClick("Search")
+	end
+	
+	if ns:GetNumResults() == 0 then
+		if currentValue == "" then 
+			AltoholicTabSearch.Status:SetText(L["No match found!"])
+		else
+			AltoholicTabSearch.Status:SetText(value .. L[" not found!"])
+		end
+	end
+	ongoingSearch = nil 	-- search done
+	
+	if SearchLoots then
+		addon.Tabs.Search:SetMode("loots")
+		-- if addon:GetOption("UI.Tabs.Search.SortDescending") then 		-- descending sort ?
+			-- AltoholicTabSearch.SortButtons.Sort3.ascendingSort = true		-- say it's ascending now, it will be toggled
+			-- ns:SortResults(AltoholicTabSearch.SortButtons.Sort3, "iLvl")
+		-- else
+			-- AltoholicTabSearch.SortButtons.Sort3.ascendingSort = nil
+			-- ns:SortResults(AltoholicTabSearch.SortButtons.Sort3, "iLvl")
+		-- end
+	else
+		addon.Tabs.Search:SetMode("realm")
+	end
+
+	ns:Update()
+	collectgarbage()
 end
 
 local currentClass				-- the current character class

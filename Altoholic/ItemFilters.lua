@@ -166,7 +166,7 @@ function ns:TryFilter(filter)
 end
 
 -- currently searched item
-function ns:SetSearchedItem(itemID, itemLink, isBattlePet, followUpFunc)
+function ns:SetSearchedItem(itemID, itemLink, isBattlePet)
 	local s = searchedItem
 	local _
 
@@ -176,21 +176,12 @@ function ns:SetSearchedItem(itemID, itemLink, isBattlePet, followUpFunc)
         s.itemLink = itemLink
 	else
 		s.itemID = itemID
-        local item
-        if itemLink then
-            item = Item:CreateFromItemLink(itemLink)
-        elseif itemID then
-            item = Item:CreateFromItemID(itemID)
-        else
-            return
+		s.itemName, s.itemLink, s.itemRarity, s.itemLevel,	s.itemMinLevel, s.itemType, s.itemSubType, _, s.itemEquipLoc = GetItemInfo(itemLink or itemID)
+        if not s.itemName then
+            -- item data not loaded yet, get it from DataStore instead, if its there
+            local itemInfo = DataStore:GetReferenceItemInfo(itemID)
+            s.itemName, s.itemLink, s.itemRarity, s.itemLevel,	s.itemMinLevel, s.itemType, s.itemSubType, s.itemEquipLoc = itemInfo.name, itemInfo.link, itemInfo.rarity, itemInfo.level, itemInfo.minLevel, itemInfo.type, itemInfo.subType, itemInfo.equipLoc
         end
-        if item:IsItemEmpty() then return end
-        item:ContinueOnItemLoad(function()
-		    s.itemName, s.itemLink, s.itemRarity, s.itemLevel,	s.itemMinLevel, s.itemType, s.itemSubType, _, s.itemEquipLoc = GetItemInfo(itemLink or itemID)
-            if followUpFunc then
-                followUpFunc()
-            end
-        end)
 	end
 end
 
