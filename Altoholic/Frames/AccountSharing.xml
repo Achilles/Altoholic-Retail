@@ -898,7 +898,7 @@
 				</KeyValues>
                 <Scripts>
                     <OnLoad>
-                        self:SetText(self.context)
+                        self:SetText(LibStub("AceLocale-3.0"):GetLocale("Altoholic")[self.context])
                     </OnLoad>
                     <OnClick>
                         PanelTemplates_SetTab(AltoAccountSharing, 1);
@@ -916,7 +916,7 @@
 				</KeyValues>
                 <Scripts>
                     <OnLoad>
-                        self:SetText(self.context)
+                        self:SetText(LibStub("AceLocale-3.0"):GetLocale("Altoholic")[self.context])
                     </OnLoad>
                     <OnClick>
                         PanelTemplates_SetTab(AltoAccountSharing, 2);

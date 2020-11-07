@@ -209,7 +209,7 @@ function Altoholic.Comm.Sharing:RequestNext(player)
 	end
 
 	if isChecked and index <= #self.DestTOC then
-		SetStatus(format("Transfering item %d/%d", index, #self.DestTOC ))
+		SetStatus(format("%s %d/%d", L["Transfering item"], index, #self.DestTOC ))
 		local TocData = self.DestTOC[index]
 		
 		local TocType = strsplit(TOC_SEP, TocData)
@@ -334,7 +334,7 @@ function Altoholic.Comm.Sharing:SetMode(mode)
 		button:Enable()
 		button.requestMode = nil	
 	elseif mode == 2 then	-- request content, get data in return
-		button:SetText("Request Content")
+		button:SetText(L["Request Content"])
 		button:Enable()
 		button.requestMode = true	
 	elseif mode == 3 then

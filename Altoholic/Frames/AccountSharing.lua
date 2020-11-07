@@ -668,7 +668,7 @@ local AvailableContentScrollFrame_Desc = {
 					local last = DataStore:GetModuleLastUpdate("DataStore_Characters", name, realm, account)
 					
 					if last == line.lastUpdate then
-						return colors.green.."Up-to-date"
+						return colors.green..L["Up-to-date"]
 					else
 						return colors.lightBlue..date("%d/%b/$y %H:%M", line.lastUpdate)
 					end
@@ -689,7 +689,7 @@ local AvailableContentScrollFrame_Desc = {
 					local last = DataStore:GetModuleLastUpdate(line.module, name, realm, account)
 					
 					if last == line.lastUpdate then
-						return colors.green.."Up-to-date"
+						return colors.green..L["Up-to-date"]
 					else
 						return colors.lightBlue..date("%d/%b/$y %H:%M", line.lastUpdate)
 					end

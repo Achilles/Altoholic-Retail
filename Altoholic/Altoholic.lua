@@ -25,10 +25,11 @@ local function InitLocalization()
 	
 	AltoAccountSharingName:SetText(L["Account Name"])
 	AltoAccountSharingText1:SetText(L["Send account sharing request to:"])
-	AltoAccountSharingText2:SetText(colors.orange.."Available Content")
-	AltoAccountSharingText3:SetText(colors.orange.."Size")
+	AltoAccountSharingText2:SetText(colors.orange..L["Available Content"])
+	AltoAccountSharingText3:SetText(colors.orange..L["Size"])
 	AltoAccountSharingText4:SetText(colors.orange.."Date")
 	AltoAccountSharing_UseNameText:SetText(L["Character"])
+    AltoAccountSharing_CancelButton:SetText(CANCEL)
 	
 	AltoholicFrameSearchLabel:SetText(L["Search Containers"])
 	AltoholicFrame_ResetButton:SetText(L["Reset"])

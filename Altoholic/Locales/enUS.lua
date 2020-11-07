@@ -883,3 +883,12 @@ L["CLOSEST_DELETION_IN_PATTERN"] = "Closest deletion in %s" -- ^
 L["MAIL_WILL_BE_DELETED_PATTERN"] = "|cFF00FF00%d|cFFFFFFFF will be |cFFFF0000deleted|cFFFFFFFF upon expiry"
 L["Mails found:"] = true
 L["MAIL_HAS_EXPIRED_PATTERN"] = "%s%d %shave expired!" -- The %s's change the colour, the %s is a number quantity. So, eg: |red|21 |white|have expired!
+
+-- Added for account sharing
+L["Available Content"] = true
+L["Size"] = true
+L["Request Content"] = true
+L["Transfering item"] = true
+L["Up-to-date"] = true
+L["Entire Database"] = true
+L["Ongoing"] = true
