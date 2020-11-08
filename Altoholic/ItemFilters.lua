@@ -180,7 +180,9 @@ function ns:SetSearchedItem(itemID, itemLink, isBattlePet)
         if not s.itemName then
             -- item data not loaded yet, get it from DataStore instead, if its there
             local itemInfo = DataStore:GetReferenceItemInfo(itemID)
-            s.itemName, s.itemLink, s.itemRarity, s.itemLevel,	s.itemMinLevel, s.itemType, s.itemSubType, s.itemEquipLoc = itemInfo.name, itemInfo.link, itemInfo.rarity, itemInfo.level, itemInfo.minLevel, itemInfo.type, itemInfo.subType, itemInfo.equipLoc
+            if itemInfo then
+                s.itemName, s.itemLink, s.itemRarity, s.itemLevel,	s.itemMinLevel, s.itemType, s.itemSubType, s.itemEquipLoc = itemInfo.name, itemInfo.link, itemInfo.rarity, itemInfo.level, itemInfo.minLevel, itemInfo.type, itemInfo.subType, itemInfo.equipLoc
+            end
         end
 	end
 end
