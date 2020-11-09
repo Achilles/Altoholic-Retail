@@ -9,9 +9,8 @@ addon:Controller("AltoholicUI.ItemIcon", {
 		local itemID = frame.itemID
 		if not itemID then return end
 		
-		local itemLink = frame.itemLink or select(2, GetItemInfo(itemID))
-		if not itemLink then return end		-- still not valid ? exit
-		
+        -- check for battle pet
+        local itemLink = frame.itemLink or select(2, GetItemInfo(itemID))
         	
 		GameTooltip:SetOwner(frame, "ANCHOR_LEFT")
         
