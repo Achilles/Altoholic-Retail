@@ -892,3 +892,6 @@ L["Transfering item"] = true
 L["Up-to-date"] = true
 L["Entire Database"] = true
 L["Ongoing"] = true
+
+L["Show this guild's realm in the tooltip"] = true
+L["Include this guild's gold on the Summary totals"] = true

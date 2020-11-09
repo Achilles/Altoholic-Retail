@@ -178,14 +178,14 @@ local function GuildIcon_Initialize(frame, level)
 		info.arg1 = guildBank
 		frame:AddButtonInfo(info, level)
         
-        info.text = colors.white ..  "Show this guild's realm in the tooltip"
+        info.text = colors.white ..  L["Show this guild's realm in the tooltip"]
 		info.value = currentMenu
 		info.checked = guild.showGuildRealmInTooltip
 		info.func = OnShowGuildRealmInTooltip
 		info.arg1 = guildBank
 		frame:AddButtonInfo(info, level)
         
-        info.text = colors.white .. "Include this guild's gold on the Summary totals"
+        info.text = colors.white .. L["Include this guild's gold on the Summary totals"]
         info.value = currentMenu
         info.checked = guild.showGoldOnSummary
         info.func = OnShowGoldOnSummary

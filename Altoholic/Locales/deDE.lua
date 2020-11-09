@@ -884,15 +884,25 @@ L[ [=[Your confirmation will still be required any time someone requests your in
 L["Zelemar the Wrathful"] = "Zelemar der Hasserfüllte"
 L["Zone"] = true
 
--- Added for Grids_Tasks
 L["Task"] = "Aufgabe"
-L["Tasks"] = "Aufgaben" -- TODO: translate the tab name to this
+L["Tasks"] = "Aufgaben"
 L["New"] = "Neu"
 L["Task Type"] = "Aufgabentyp"
-L["Faction Filter"] = "Fraktionsfilter" -- TODO
+L["Faction Filter"] = "Fraktionsfilter"
 
 L["will be returned upon expiry"] = "werden bei Ablauf zurückgeschickt"
 L["CLOSEST_RETURN_IN_PATTERN"] = "Nächste Rücksendung in %s" -- %s will be filled in by [# hours # minutes]
 L["CLOSEST_DELETION_IN_PATTERN"] = "Nächste Löschung in %s" -- ^
 L["MAIL_WILL_BE_DELETED_PATTERN"] = "|cFF00FF00%d|cFFFFFFFF Briefe werden bei Ablauf |cFFFF0000gelöscht|cFFFFFFFF"
 L["Mails found:"] = "Briefe gefunden:"
+
+L["Available Content"] = true
+L["Size"] = true
+L["Request Content"] = true
+L["Transfering item"] = true
+L["Up-to-date"] = true
+L["Entire Database"] = true
+L["Ongoing"] = true
+
+L["Show this guild's realm in the tooltip"] = "Zeige den Gildenrealm im Tooltip an"
+L["Include this guild's gold on the Summary totals"] = "Zeige das Gold der Gilde in der Übersicht an"
