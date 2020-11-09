@@ -896,13 +896,13 @@ L["CLOSEST_DELETION_IN_PATTERN"] = "Nächste Löschung in %s" -- ^
 L["MAIL_WILL_BE_DELETED_PATTERN"] = "|cFF00FF00%d|cFFFFFFFF Briefe werden bei Ablauf |cFFFF0000gelöscht|cFFFFFFFF"
 L["Mails found:"] = "Briefe gefunden:"
 
-L["Available Content"] = true
-L["Size"] = true
-L["Request Content"] = true
-L["Transfering item"] = true
-L["Up-to-date"] = true
-L["Entire Database"] = true
-L["Ongoing"] = true
+L["Available Content"] = "Verfügbare Inhalte"
+L["Size"] = "Größe"
+L["Request Content"] = "Inhalte anfragen"
+L["Transfering item"] = "Gegenstände Übertragen"
+L["Up-to-date"] = "Aktuell"
+L["Entire Database"] = "Gesamte Datenbank"
+L["Ongoing"] = "Fortlaufend"
 
 L["Show this guild's realm in the tooltip"] = "Zeige den Gildenrealm im Tooltip an"
 L["Include this guild's gold on the Summary totals"] = "Zeige das Gold der Gilde in der Übersicht an"
