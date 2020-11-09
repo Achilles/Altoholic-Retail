@@ -26,7 +26,7 @@
 				<FontString parentKey="Remaining" inherits="GameFontNormal" justifyH="RIGHT">
 					<Size x="120" y="32" />
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="TOPRIGHT" x="110" y="0" />
+						<Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="TOPRIGHT" x="150" y="0" />
 					</Anchors>
 				</FontString>
 				<FontString parentKey="Success" inherits="GameFontNormal" justifyH="RIGHT">
