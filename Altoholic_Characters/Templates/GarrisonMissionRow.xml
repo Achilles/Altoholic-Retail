@@ -26,7 +26,7 @@
 				<FontString parentKey="Remaining" inherits="GameFontNormal" justifyH="RIGHT">
 					<Size x="120" y="32" />
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="TOPRIGHT" x="150" y="0" />
+						<Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="TOPRIGHT" x="180" y="0" />
 					</Anchors>
 				</FontString>
 				<FontString parentKey="Success" inherits="GameFontNormal" justifyH="RIGHT">
@@ -70,7 +70,7 @@
 			</Button>
 			<Button parentKey="Reward1" inherits="AltoGarrisonMissionRewardTemplate">
 				<Anchors>
-					<Anchor point="TOPRIGHT" x="-50" y="-4" />
+					<Anchor point="TOPRIGHT" x="-20" y="-4" />
 				</Anchors>
 			</Button>
 			<Button parentKey="Reward2" inherits="AltoGarrisonMissionRewardTemplate">
