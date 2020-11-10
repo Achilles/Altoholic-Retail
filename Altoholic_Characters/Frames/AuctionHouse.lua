@@ -146,7 +146,7 @@ function ns:UpdateAuctions()
     end
 	
 	if numAuctions == 0 then		-- make sure the scroll frame is cleared !
-		for i=1, VisibleLines do					-- Hides all entries of the scrollframe, and updates it accordingly
+		for i=1, 18 do					-- Hides all entries of the scrollframe, and updates it accordingly
 			_G[ entry..i ]:Hide()
 		end
 
@@ -226,7 +226,7 @@ function ns:UpdateBids()
     end
 	
 	if numBids == 0 then		-- make sure the scroll frame is cleared !
-		for i=1, VisibleLines do					-- Hides all entries of the scrollframe, and updates it accordingly
+		for i=1, 18 do					-- Hides all entries of the scrollframe, and updates it accordingly
 			_G[ entry..i ]:Hide()
 		end
 
