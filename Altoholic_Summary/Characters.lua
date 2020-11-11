@@ -249,9 +249,9 @@ local function AddRealm(AccountName, RealmName)
 	    totalLevels = totalLevels + realmLevels
     end
 	realmCount = realmCount + 1
-	
+
 	-- remove empty realms if no characters have passed filters
-	if numCharacters == 0 then
+	if (mode ~= ALLREALMS_HIDEREALMS) and (numCharacters == 0) then
 		table.remove(characterList)	-- remove the last 2 lines, which are the header and the total if no characters were found
 		table.remove(characterList)
 	end
