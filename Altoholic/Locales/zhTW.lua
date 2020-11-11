@@ -866,8 +866,26 @@ L[ [=[Your confirmation will still be required any time someone requests your in
 L["Zelemar the Wrathful"] = "憤怒者塞雷瑪爾"
 L["Zone"] = "地區"
 
-L["will be returned upon expiry"] = "TRANSLATION MISSING"
-L["CLOSEST_RETURN_IN_PATTERN"] = "TRANSLATION MISSING %s" -- %s will be filled in by [# hours # minutes]
-L["CLOSEST_DELETION_IN_PATTERN"] = "TRANSLATION MISSING %s" -- ^
-L["MAIL_WILL_BE_DELETED_PATTERN"] = "|cFF00FF00%d|cFFFFFFFF will be |cFFFF0000deleted|cFFFFFFFF upon expiry"
-L["Mails found:"] = "TRANSLATION MISSING"
+L["will be returned upon expiry"] = "郵件 若過期將會被 退回"
+L["CLOSEST_RETURN_IN_PATTERN"] = "退回時限還剩: %s" -- %s will be filled in by [# hours # minutes]
+L["CLOSEST_DELETION_IN_PATTERN"] = "毀滅時限還剩: %s" -- ^
+L["MAIL_WILL_BE_DELETED_PATTERN"] = "|cFF00FF00%d|cFFFFFFFF 郵件 若過期將會被 |cFFFF0000毀滅|cFFFFFFFF "
+L["Mails found:"] = "尋獲郵件:"
+
+-- Added for Grids_Tasks
+L["Task"] = "TRANSLATION NEEDED"
+L["Tasks"] = "TRANSLATION NEEDED"
+L["New"] = "TRANSLATION NEEDED"
+L["Task Type"] = "TRANSLATION NEEDED"
+
+-- Added for account sharing
+L["Available Content"] = "TRANSLATION NEEDED"
+L["Size"] = "TRANSLATION NEEDED"
+L["Request Content"] = "TRANSLATION NEEDED"
+L["Transfering item"] = "TRANSLATION NEEDED"
+L["Up-to-date"] = "TRANSLATION NEEDED"
+L["Entire Database"] = "TRANSLATION NEEDED"
+L["Ongoing"] = "TRANSLATION NEEDED"
+
+L["Show this guild's realm in the tooltip"] = "TRANSLATION NEEDED"
+L["Include this guild's gold on the Summary totals"] = "TRANSLATION NEEDED"

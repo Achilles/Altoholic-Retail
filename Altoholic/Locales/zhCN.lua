@@ -774,3 +774,21 @@ L["CLOSEST_RETURN_IN_PATTERN"] = "TRANSLATION MISSING %s" -- %s will be filled i
 L["CLOSEST_DELETION_IN_PATTERN"] = "TRANSLATION MISSING %s" -- ^
 L["MAIL_WILL_BE_DELETED_PATTERN"] = "|cFF00FF00%d|cFFFFFFFF will be |cFFFF0000deleted|cFFFFFFFF upon expiry"
 L["Mails found:"] = "TRANSLATION MISSING"
+
+-- Added for Grids_Tasks
+L["Task"] = "TRANSLATION NEEDED"
+L["Tasks"] = "TRANSLATION NEEDED"
+L["New"] = "TRANSLATION NEEDED"
+L["Task Type"] = "TRANSLATION NEEDED"
+
+-- Added for account sharing
+L["Available Content"] = "TRANSLATION NEEDED"
+L["Size"] = "TRANSLATION NEEDED"
+L["Request Content"] = "TRANSLATION NEEDED"
+L["Transfering item"] = "TRANSLATION NEEDED"
+L["Up-to-date"] = "TRANSLATION NEEDED"
+L["Entire Database"] = "TRANSLATION NEEDED"
+L["Ongoing"] = "TRANSLATION NEEDED"
+
+L["Show this guild's realm in the tooltip"] = "TRANSLATION NEEDED"
+L["Include this guild's gold on the Summary totals"] = "TRANSLATION NEEDED"
