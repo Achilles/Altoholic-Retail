@@ -19,7 +19,10 @@ local function CalculateNumTotalTabs()
         if string.sub(GetAddOnInfo(i), 1, #(addonName.."_")) == (addonName.."_") then
             if (GetAddOnEnableState(nil, i) ~= 0) then
                 local englishTabName = string.sub(GetAddOnInfo(i), (#(addonName.."_")+1), #GetAddOnInfo(i))
-                table.insert(tabNamesLocal, L[englishTabName])
+                -- pcall this to support the tab name not being in localization files yet
+                if not pcall(function() table.insert(tabNamesLocal, L[englishTabName]) end) then
+                    table.insert(tabNamesLocal, englishTabName)
+                end
                 table.insert(tabNamesEnglish, englishTabName)
             end
         end 
