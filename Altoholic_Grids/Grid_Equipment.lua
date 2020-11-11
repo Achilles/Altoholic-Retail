@@ -405,6 +405,7 @@ local callbacks = {
 				end
 
 				button.Name:SetText(itemLevel)
+                button.Name:SetTextColor(1, 1, 1)
 			else
 				button.key = nil
 				button.Background:SetTexture(addon:GetEquipmentSlotIcon(dataRowID))
