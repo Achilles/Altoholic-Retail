@@ -450,15 +450,15 @@ local function GetRecipeOwnersText(professionName, link, recipeLevel, recipeRank
 	
 	local lines = {}
 	if #know > 0 then
-		table.insert(lines, colors.teal .. L["Already known by "] ..": ".. colors.white.. table.concat(know, ", ") .."\n")
+		table.insert(lines, colors.teal .. L["Already known by "] ..":|r ".. colors.white.. table.concat(know, ", ") .."|r\n")
 	end
 	
 	if #couldLearn > 0 then
-		table.insert(lines, colors.yellow .. L["Could be learned by "] ..": ".. colors.white.. table.concat(couldLearn, ", ") .."\n")
+		table.insert(lines, colors.yellow .. L["Could be learned by "] ..":|r ".. colors.white.. table.concat(couldLearn, ", ") .."|r\n")
 	end
 	
 	if #willLearn > 0 then
-		table.insert(lines, colors.red .. L["Will be learnable by "] ..": ".. colors.white.. table.concat(willLearn, ", ") .."\n")
+		table.insert(lines, colors.red .. L["Will be learnable by "] ..":|r ".. colors.white.. table.concat(willLearn, ", ") .."|r\n")
 	end
 	
 	return table.concat(lines, "\n")
@@ -480,12 +480,12 @@ local function AddGlyphOwners(itemID, tooltip)
 	
 	if #know > 0 then
 		tooltip:AddLine(" ",1,1,1);
-		tooltip:AddLine(colors.teal .. L["Already known by "] ..": ".. colors.white.. table.concat(know, ", "), 1, 1, 1, 1);
+		tooltip:AddLine(colors.teal .. L["Already known by "] ..":|r ".. colors.white.. table.concat(know, ", ").."|r", 1, 1, 1, 1);
 	end
 	
 	if #couldLearn > 0 then
 		tooltip:AddLine(" ",1,1,1);
-		tooltip:AddLine(colors.yellow .. L["Could be learned by "] ..": ".. colors.white.. table.concat(couldLearn, ", "), 1, 1, 1, 1);
+		tooltip:AddLine(colors.yellow .. L["Could be learned by "] ..":|r ".. colors.white.. table.concat(couldLearn, ", ").."|r", 1, 1, 1, 1);
 	end
 end
 
