@@ -650,7 +650,7 @@ columns["RestXP"] = {
 
 columns["Money"] = {
 	-- Header
-	headerWidth = 120,
+	headerWidth = 130,
 	headerLabel = L["COLUMN_MONEY_TITLE_SHORT"],
 	tooltipTitle = L["COLUMN_MONEY_TITLE"],
 	tooltipSubTitle = L["COLUMN_MONEY_SUBTITLE_"..random(5)],
@@ -658,7 +658,7 @@ columns["Money"] = {
 	headerSort = DataStore.GetMoney,
 	
 	-- Content
-	Width = 110,
+	Width = 120,
 	JustifyH = "RIGHT",
 	GetText = function(character) 
 		return addon:GetMoneyString(DataStore:GetMoney(character))
