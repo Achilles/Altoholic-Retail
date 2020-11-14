@@ -113,9 +113,9 @@ L["COLUMN_GARRISON_MISSIONS_DETAIL_3"] = "No ongoing missions"
  
 -- *** Tab Summary / Garrison Followers ***
  
-L["COLUMN_FOLLOWERS_LV100_TITLE"] = "Level 100 Followers"
-L["COLUMN_FOLLOWERS_LV100_TITLE_SHORT"] = "Lv 100"
-L["COLUMN_FOLLOWERS_LV100_SUBTITLE"] = "Level 100 vs Total Followers" 
+L["COLUMN_FOLLOWERS_LV40_TITLE"] = "Level 40 Followers"
+L["COLUMN_FOLLOWERS_LV40_TITLE_SHORT"] = "Lv 40"
+L["COLUMN_FOLLOWERS_LV40_SUBTITLE"] = "Level 40 vs Total Followers" 
 
 L["COLUMN_FOLLOWERS_RARITY_TITLE"] = "Followers' Rarity Level"
 L["COLUMN_FOLLOWERS_RARITY_TITLE_SHORT"] = "Rarity"

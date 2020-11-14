@@ -19,7 +19,7 @@ addon:Controller("AltoholicUI.ItemIcon", {
 			if speciesID then
 				BattlePetToolTip_Show(speciesID, level, breedQuality, maxHealth, power, speed, name)
 			else
-		        GameTooltip:SetItemByID(itemID)
+                GameTooltip:SetItemByID(itemID)
 			end
 		else
 			GameTooltip:SetItemByID(itemID)

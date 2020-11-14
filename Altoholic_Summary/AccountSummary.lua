@@ -1749,14 +1749,14 @@ for currencyIndex = 1, 5 do
 end
 
 -- ** Garrison Followers **
-columns["FollowersLV100"] = {
+columns["FollowersLV40"] = {
 	-- Header
 	headerWidth = 70,
-	headerLabel = L["COLUMN_FOLLOWERS_LV100_TITLE_SHORT"],
-	tooltipTitle = L["COLUMN_FOLLOWERS_LV100_TITLE"],
-	tooltipSubTitle = L["COLUMN_FOLLOWERS_LV100_SUBTITLE"],
-	headerOnClick = function() SortView("FollowersLV100") end,
-	headerSort = DataStore.GetNumFollowersAtLevel100,
+	headerLabel = L["COLUMN_FOLLOWERS_LV40_TITLE_SHORT"],
+	tooltipTitle = L["COLUMN_FOLLOWERS_LV40_TITLE"],
+	tooltipSubTitle = L["COLUMN_FOLLOWERS_LV40_SUBTITLE"],
+	headerOnClick = function() SortView("FollowersLV40") end,
+	headerSort = DataStore.GetNumFollowersAtLevel40,
 	
 	-- Content
 	Width = 70,
@@ -1764,9 +1764,9 @@ columns["FollowersLV100"] = {
 	GetText = function(character)
 			local amount = DataStore:GetNumFollowers(character) or 0
 			local color = (amount == 0) and colors.grey or colors.white
-			local amountLv100 = DataStore:GetNumFollowersAtLevel100(character) or 0
+			local amountLv40 = DataStore:GetNumFollowersAtLevel40(character) or 0
 			
-			return format("%s%s/%s", color, amountLv100, amount)
+			return format("%s%s/%s", color, amountLv40, amount)
 		end,
 }
 
@@ -2159,7 +2159,7 @@ local modes = {
 	[MODE_SKILLS] = { "Name", "Level", "Prof1", "Prof2", "ProfCooking", "ProfFishing", "ProfArchaeology" },
 	[MODE_ACTIVITY] = { "Name", "Level", "Mails", "LastMailCheck", "Auctions", "Bids", "AHLastVisit", "MissionTableLastVisit" },
     [MODE_CURRENCIES] = { "Name", "Level", "Currency1", "Currency2", "Currency3", "Currency4", "Currency5" },
-	[MODE_FOLLOWERS] = { "Name", "Level", "FollowersLV100", "FollowersEpic", "FollowersLV630", "FollowersLV660", "FollowersLV675", "FollowersItems" },
+	[MODE_FOLLOWERS] = { "Name", "Level", "FollowersLV40", "FollowersEpic", "FollowersLV630", "FollowersLV660", "FollowersLV675", "FollowersItems" },
     [MODE_KEYSTONES] = { "Name", "CurrentKeystoneName", "CurrentKeystoneLevel", "HighestKeystoneName", "HighestKeystoneLevel", "HighestKeystoneTime" },
     [MODE_HEARTHSTONE] = { "Name", "BindLocation", "ConquestPoints", "RenownLevel", "FreeReagentBankSlots", "FreeVoidStorageSlots" },
     [MODE_GEAR] = {"Name", }
