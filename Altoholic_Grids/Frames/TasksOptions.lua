@@ -751,7 +751,8 @@ local function AddClicked()
     
     -- If this was the first task name, initialize the dropdown
     if #tasks == 1 then
-        addon:DDM_Initialize(AltoTasksOptions_TaskNameDropdown, TaskNameDropdown_Opened)    
+        addon:DDM_Initialize(AltoTasksOptions_TaskNameDropdown, TaskNameDropdown_Opened)
+        UIDropDownMenu_EnableDropDown(AltoTasksOptions_TaskNameDropdown)    
     end
     
     -- Set the new task as the currently selected task
@@ -785,6 +786,17 @@ local function DeleteClicked()
     UIDropDownMenu_SetText(AltoTasksOptions_TaskTypeDropdown, nil)
     UIDropDownMenu_SetText(AltoTasksOptions_TaskExpansionDropdown, nil)
     UIDropDownMenu_SetText(AltoTasksOptions_TaskTargetDropdown, nil)
+    UIDropDownMenu_SetText(AltoTasksOptions_TaskNameDropdown, nil)
+
+    -- Disable them
+    UIDropDownMenu_DisableDropDown(AltoTasksOptions_TaskTypeDropdown)
+    UIDropDownMenu_DisableDropDown(AltoTasksOptions_TaskExpansionDropdown)
+    UIDropDownMenu_DisableDropDown(AltoTasksOptions_TaskTargetDropdown)
+
+    -- if there are no tasks left, disable the task name dropdown
+    if #tasks == 0 then
+        UIDropDownMenu_DisableDropDown(AltoTasksOptions_TaskNameDropdown)
+    end
 
     AltoholicTabGrids:Update()
 end
