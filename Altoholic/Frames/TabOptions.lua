@@ -139,7 +139,7 @@ function addon:SetOption(name, value)
 end
 
 local function UpdateRealmsOptionSelectivity()
-	f = AltoholicTooltipOptions
+	local f = AltoholicTooltipOptions
     local connectedEnabled = addon:GetOption("UI.Tooltip.ShowMergedRealmsCount")
     
     if not connectedEnabled then
