@@ -507,20 +507,19 @@ columns["Name"] = {
 
 			local dungeons = DataStore:GetSavedInstances(character)
 			if dungeons then
-				for key, _ in pairs(dungeons) do
-					local hasExpired, expiresIn = DataStore:HasSavedInstanceExpired(character, key)
-                    local name = DataStore:GetSavedInstanceInfo(character, key)
+				for instanceID, _ in pairs(dungeons) do
+					local hasExpired, expiresIn = DataStore:HasSavedInstanceExpired(character, instanceID)
+                    local instanceName = DataStore:GetSavedInstanceInfo(character, instanceID)
 					
 					if hasExpired then
-						DataStore:DeleteSavedInstance(character, key)
+						DataStore:DeleteSavedInstance(character, instanceID)
 					else
 						if bLineBreak then
 							tt:AddLine(" ")		-- add a line break only once
 							bLineBreak = nil
 						end
 						
-						local instanceName, instanceID = strsplit("|", key)
-						tt:AddDoubleLine(format("%s (%sID: %s|r)", colors.gold..name, colors.white, colors.green..key), addon:GetTimeString(expiresIn))
+						tt:AddDoubleLine(format("%s (%sID: %s|r)", colors.gold..instanceName, colors.white, colors.green..instanceID), addon:GetTimeString(expiresIn))
 					end
 				end
 			end
