@@ -32,7 +32,12 @@ local function GetEventExpiry(event)
 	if DataStore_Agenda then
 		gap = DataStore:GetClientServerTimeGap()
 	end
+    
+    if event.eventType == 2 then
+        return difftime(time(timeTable), time()) -- instance lockouts are based on local time
+    end
 	
+    -- TODO: test if any of the other events are based on local time vs server time
 	return difftime(time(timeTable), time() + gap)	-- in seconds
 end
 
@@ -77,19 +82,15 @@ local eventTypes = {
 	},
 	[INSTANCE_LINE] = {
 		GetReadyNowWarning = function(self, event)
-				local instance = strsplit("|", event.parentID)
-				return format(L["%s is now unlocked (%s on %s)"], instance, event.char, event.realm)
+				return format(L["%s is now unlocked (%s on %s)"], event.source, event.char, event.realm)
 			end,
 		GetReadySoonWarning = function(self, event, minutes)
-				local instance = strsplit("|", event.parentID)
-				return format(L["%s will be unlocked in %d minutes (%s on %s)"], instance, minutes, event.char, event.realm)
+				return format(L["%s will be unlocked in %d minutes (%s on %s)"], event.source, minutes, event.char, event.realm)
 			end,
 		GetInfo = function(self, event)
 				-- title gets the instance name, desc gets the raid id
-				local instanceName, raidID = strsplit("|", event.parentID)
 		
-				--	CALENDAR_EVENTNAME_FORMAT_RAID_LOCKOUT = "%s Unlocks"; -- %s = Raid Name
-				return instanceName, format("%s%s\nID: %s%s", colors.white,	format(CALENDAR_EVENTNAME_FORMAT_RAID_LOCKOUT, instanceName), colors.green, raidID)
+				return event.source, format("%s%s\nID: %s%s", colors.white,	format(CALENDAR_EVENTNAME_FORMAT_RAID_LOCKOUT, event.source), colors.green, event.parentID)
 			end,
 	},
 	[CALENDAR_LINE] = {
@@ -454,10 +455,6 @@ function ns:CheckExpiries(elapsed)
 	
 	if hasEventExpired then		-- if at least one event has expired, rebuild the list & Update
 		ClearExpiredEvents()
-		
-		-- should be removed, nothing to do here
-		-- nsEvents:BuildView()
-		-- Altoholic.Summary:Update()
 	end
 end
 
@@ -521,9 +518,8 @@ function ns:BuildList()
 			local dungeons = DataStore:GetSavedInstances(character)
 			if dungeons then
 				for key, _ in pairs(dungeons) do
-					local reset, lastCheck = DataStore:GetSavedInstanceInfo(character, key)
-					local expires = reset + lastCheck
-					AddEvent(INSTANCE_LINE, date("%Y-%m-%d",expires), date("%H:%M",expires), characterName, realm, key)
+					local name, expires = DataStore:GetSavedInstanceInfo(character, key)
+					AddEvent(INSTANCE_LINE, date("%Y-%m-%d",expires), date("%H:%M",expires), characterName, realm, key, name)
 				end
 			end
 			
