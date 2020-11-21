@@ -509,6 +509,7 @@ columns["Name"] = {
 			if dungeons then
 				for key, _ in pairs(dungeons) do
 					local hasExpired, expiresIn = DataStore:HasSavedInstanceExpired(character, key)
+                    local name = DataStore:GetSavedInstanceInfo(character, key)
 					
 					if hasExpired then
 						DataStore:DeleteSavedInstance(character, key)
@@ -519,7 +520,7 @@ columns["Name"] = {
 						end
 						
 						local instanceName, instanceID = strsplit("|", key)
-						tt:AddDoubleLine(format("%s (%sID: %s|r)", colors.gold..instanceName, colors.white, colors.green..instanceID), addon:GetTimeString(expiresIn))
+						tt:AddDoubleLine(format("%s (%sID: %s|r)", colors.gold..name, colors.white, colors.green..key), addon:GetTimeString(expiresIn))
 					end
 				end
 			end

@@ -489,8 +489,8 @@ local callbacks = {
 			local dungeonID = view[dataRowID].id
 			local count = DataStore:GetLFGDungeonKillCount(character, dungeonID)
             if (not count) or (count == 0) then
-                for dungeonKey, _ in pairs(DataStore:GetSavedInstances(character)) do
-                    local savedDungeonName, savedDungeonID = strsplit("|", dungeonKey)
+                for savedDungeonID, _ in pairs(DataStore:GetSavedInstances(character)) do
+                    local savedDungeonName = DataStore:GetSavedInstanceInfo(character, savedDungeonID)
                     local name, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, name2, _ = GetLFGDungeonInfo(dungeonID)
                     local name3, name4 = "", ""
                     if view[dataRowID].difficulty2 then
@@ -500,7 +500,7 @@ local callbacks = {
                     name = name.." "..GetDifficultyInfo(view[dataRowID].difficulty)
                     name2 = name2.." "..GetDifficultyInfo(view[dataRowID].difficulty)
                     if (savedDungeonName == name) or (savedDungeonName == name2) or (savedDungeonName == name3) or (savedDungeonName == name4) then
-                        _, _, _, _, _, count = DataStore:GetSavedInstanceInfo(character, dungeonKey) 
+                        _, _, _, _, _, count = DataStore:GetSavedInstanceInfo(character, savedDungeonID) 
                     end
                 end
             end
