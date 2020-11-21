@@ -76,8 +76,8 @@ local function isTaskComplete(taskID, character)
         if (task.Expansion == nil) then return false end
         if (task.Difficulty == nil) then return false end
         
-        for dungeonKey, _ in pairs(DataStore:GetSavedInstances(character)) do
-            local instanceName, instanceID = strsplit("|", dungeonKey)
+        for instanceID, _ in pairs(DataStore:GetSavedInstances(character)) do
+            local instanceName = DataStore:GetSavedInstanceInfo(character, instanceID)
             local taskTargetName = EJ_GetInstanceInfo(task.Target)
             if instanceName == (taskTargetName.." "..task.Difficulty) then
                 return true
@@ -92,8 +92,8 @@ local function isTaskComplete(taskID, character)
         
         local taskTargetName = EJ_GetInstanceInfo(task.Target)
         
-        for dungeonKey, _ in pairs(DataStore:GetSavedInstances(character)) do
-            local instanceName, instanceID = strsplit("|", dungeonKey)
+        for instanceID, _ in pairs(DataStore:GetSavedInstances(character)) do
+            local instanceName = DataStore:GetSavedInstanceInfo(character, instanceID)
                         
             if task.Difficulty == "classic" then
                 if instanceName == "Ahn'Qiraj Temple 40 Player" then
@@ -129,10 +129,10 @@ local function isTaskComplete(taskID, character)
         
         local taskTargetName = EJ_GetInstanceInfo(task.Target["instanceID"])
         
-        for dungeonKey, _ in pairs(DataStore:GetSavedInstances(character)) do
-            local instanceName, instanceID = strsplit("|", dungeonKey)
+        for instanceID in pairs(DataStore:GetSavedInstances(character)) do
+            local instanceName = DataStore:GetSavedInstanceInfo(character, instanceID)
             if instanceName == (taskTargetName.." "..task.Difficulty) then
-                local reset, lastCheck, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, dungeonKey)
+                local name, reset, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, instanceID)
                 return dungeonBosses[task.Target["creatureName"]]
             end
 		end
@@ -149,30 +149,30 @@ local function isTaskComplete(taskID, character)
         
         local taskTargetName = EJ_GetInstanceInfo(task.Target["instanceID"])
         
-        for dungeonKey, _ in pairs(DataStore:GetSavedInstances(character)) do
-            local instanceName, instanceID = strsplit("|", dungeonKey)
+        for instanceID, _ in pairs(DataStore:GetSavedInstances(character)) do
+            local instanceName = DataStore:GetSavedInstanceInfo(character, instanceID)
                         
             if task.Difficulty == "classic" then
                 if instanceName == "Ahn'Qiraj Temple 40 Player" then
                     if taskTargetName == "Temple of Ahn'Qiraj" then
-                        local reset, lastCheck, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, dungeonKey)
+                        local name, reset, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, instanceID)
                         return dungeonBosses[task.Target["creatureName"]]
                     end
                 elseif instanceName == "Ahn'Qiraj Ruins 20 Player" then
                     if taskTargetName == "Ruins of Ahn'Qiraj" then
-                        local reset, lastCheck, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, dungeonKey)
+                        local name, reset, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, instanceID)
                         return dungeonBosses[task.Target["creatureName"]]
                     end
                 else
                     instanceName = instanceName.." 40 Player"
                     if taskTargetName == instanceName then
-                        local reset, lastCheck, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, dungeonKey)
+                        local name, reset, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, instanceID)
                         return dungeonBosses[task.Target["creatureName"]]
                     end
                 end
             else             
                 if instanceName == (taskTargetName.." "..task.Difficulty) then
-                    local reset, lastCheck, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, dungeonKey)
+                    local name, reset, isExtended, isRaid, numEncounters, encounterProgress, dungeonBosses = DataStore:GetSavedInstanceInfo(character, instanceID)
                     return dungeonBosses[task.Target["creatureName"]]
                 end
             end                
@@ -195,8 +195,8 @@ local function isTaskComplete(taskID, character)
     end
     
     if task.Category == "World Boss" then
-        for bossKey, bossReset in pairs(DataStore:GetSavedWorldBosses(character)) do
-            local bossName, bossID = strsplit("|", bossKey)
+        for bossID, bossReset in pairs(DataStore:GetSavedWorldBosses(character)) do
+            local bossName = DataStore:GetSavedInstanceInfo(DataStore:GetCharacter(), bossID)
             if bossName == task.Target then
                 return true
             end
