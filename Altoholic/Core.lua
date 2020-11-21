@@ -193,7 +193,6 @@ local AddonDB_Defaults = {
 			["UI.Scale"] = 1.0,
 			["UI.Transparency"] = 1.0,
 			["UI.ClampWindowToScreen"] = false,
-
 		},
 	}
 }
@@ -466,4 +465,4 @@ function addon:CmdSearchBags(arg1, arg2)
 	AltoholicFrame_SearchEditBox:SetText(strlower(arg2))
 	addon.Tabs:OnClick("Search")
 	addon.Search:FindItem()
-end	
+end
