@@ -443,8 +443,8 @@ local function TaskTargetDropdown_Opened(frame, level, menuList)
     
     if category == "World Boss" then
         local a = false
-        for bossKey, bossReset in pairs(DataStore:GetSavedWorldBosses(DataStore:GetCharacter())) do
-            local bossName, bossID = strsplit("|", bossKey)
+        for bossID, bossReset in pairs(DataStore:GetSavedWorldBosses(DataStore:GetCharacter())) do
+            local bossName = DataStore:GetSavedInstanceInfo(DataStore:GetCharacter(), bossID)
             a = true
             local info = UIDropDownMenu_CreateInfo()
             info.text = bossName
