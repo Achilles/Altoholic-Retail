@@ -286,9 +286,9 @@ local Factions = {
 		{	-- [3]
 			name = OTHER,
             { name = DataStore:GetFactionName(2410), icon = "inv_tabard_maldraxxus_d_01" },
-            { name = DataStore:GetFactionName(2422), icon = "inv_tabard_ardenweald_d_01" },
+            { name = DataStore:GetFactionName(2465), icon = "inv_tabard_ardenweald_d_01" },
 			{ name = DataStore:GetFactionName(2413), icon = "inv_tabard_revendreth_d_01" },
-			{ name = DataStore:GetFactionName(2407), icon = "PLACEHOLDER" }, -- check https://shadowlands.wowhead.com/achievement=14335/the-ascended#criteria-of:0+1+2
+			{ name = DataStore:GetFactionName(2407), icon = "inv_tabard_bastion_d_01" },
 		},
     },
 	{
