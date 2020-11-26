@@ -89,11 +89,11 @@ LibStub("LibGatheringNodes-1.0").enUS = {
     
     -- Delaydowlands
     ["Laestrite Deposit"]               = 171828, -- Laestrite Ore
+    ["Rich Laestrite Deposit"]          = 171828, -- Laestrite Ore
+    ["Elethium Deposit"]                = 171833, -- Elethium Ore
     ["Rich Elethium Deposit"]           = 171833, -- Elethium Ore
     ["Solenium Deposit"]                = 171829, -- Solenium Ore
-    ["Elethium Deposit"]                = 171833, -- Elethium Ore
     ["Rich Solenium Deposit"]           = 171829, -- Solenium Ore
-    ["Rich Laestrite Deposit"]          = 171828, -- Laestrite Ore
     ["Oxxein Deposit"]                  = 171830, -- Oxxein Ore
     ["Sinvyr Deposit"]                  = 171832, -- Sinvyr Ore
     ["Phaedrum Deposit"]                = 171831, -- Phaedrum Ore
