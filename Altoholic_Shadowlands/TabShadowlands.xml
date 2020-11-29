@@ -1,0 +1,69 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="TabShadowlands.lua"></Script>
+
+	<Button name="AltoTabShadowlandsIconTemplate" inherits="AltoButtonTemplate" virtual="true">
+		<Scripts>
+			<OnEnter>
+				Altoholic.Tabs.Shadowlands:Icon_OnEnter(self)
+			</OnEnter>
+		</Scripts>
+	</Button>
+    
+	<Button name="AltoShadowlandsMenuItemTemplate" inherits="AltoMenuItemTemplate" hidden="false" virtual="true">
+		<Size x="156" y="20" />
+		<Scripts>
+			<OnClick>
+				self:GetParent():MenuItem_OnClick(self:GetID(), self.panel)
+			</OnClick>
+		</Scripts>
+	</Button>
+    
+	<Frame name="AltoholicTabShadowlands" parent="AltoholicFrame">
+		<Size x="758" y="447" />
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+            <Anchor point="BOTTOMRIGHT"/>
+		</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture parentKey="Background" alpha="0.8">
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="190" y="20" />
+                            <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" x="10" y="-70" />
+						</Anchors>
+					</Texture>
+				</Layer>
+			</Layers>
+		<Frames>
+			<Button parentKey="CharactersIcon" inherits="AltoTabShadowlandsIconTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOP" x="0" y="-50" />
+				</Anchors>
+			</Button>
+            
+			<Button parentKey="MenuItem1" inherits="AltoShadowlandsMenuItemTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="23" y="-105" />
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="panel" value="Overview" />
+				</KeyValues>
+			</Button>
+			<Button parentKey="MenuItem2" inherits="AltoShadowlandsMenuItemTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem1" relativePoint="BOTTOMLEFT" x="0" y="0" />
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="panel" value="Renown" />
+				</KeyValues>
+			</Button>
+            
+            <Frame parentKey="ContextualMenu" inherits="AltoContextualMenuTemplate" />
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Altoholic:BindViewToController(self, "AltoholicUI.TabShadowlands")
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

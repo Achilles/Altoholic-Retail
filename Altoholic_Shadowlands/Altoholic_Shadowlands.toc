@@ -1,0 +1,14 @@
+## Interface: 90002
+## Title: Altoholic_Shadowlands
+## Notes: Altoholic's Shadowlands UI
+## Author: Teelo
+## Version: @project-version@
+## Dependencies: Altoholic, DataStore, DataStore_Characters, DataStore_Covenants
+## LoadOnDemand: 1
+## X-Category: Interface Enhancements
+
+#Templates\UITemplates.xml
+TabShadowlands.xml
+
+Frames\Overview.xml
+#Frames\GuildBank.xml
