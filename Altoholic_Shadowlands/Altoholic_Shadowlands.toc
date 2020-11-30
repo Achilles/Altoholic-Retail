@@ -3,7 +3,7 @@
 ## Notes: Altoholic's Shadowlands UI
 ## Author: Teelo
 ## Version: @project-version@
-## Dependencies: Altoholic, DataStore, DataStore_Characters, DataStore_Covenants
+## Dependencies: Altoholic, DataStore, DataStore_Characters, DataStore_Covenants, DataStore_Quests
 ## LoadOnDemand: 1
 ## X-Category: Interface Enhancements
 
@@ -11,4 +11,4 @@
 TabShadowlands.xml
 
 Frames\Overview.xml
-#Frames\GuildBank.xml
+Frames\Renown.xml

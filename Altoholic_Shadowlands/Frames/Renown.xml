@@ -1,60 +1,7 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="Overview.lua"></Script>
+	<Script file="Renown.lua"></Script>
 
-    <Frame name="AltoShadowlandsCallingQuestTemplate" virtual="true">
-		<KeyValues>
-			<KeyValue key="ignoreInLayout" value="true" type="boolean"/>
-		</KeyValues>
-		<Size x="54" y="54"/>
-		<Layers>
-			<Layer level="BACKGROUND" textureSublevel="-1">
-				<Texture parentKey="Glow" atlas="Callings-Glow" hidden="true">
-					<Size x="78" y="78"/>
-					<Anchors>
-						<Anchor point="CENTER" x="0" y="4"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-			<Layer level="BACKGROUND">
-				<Texture parentKey="Icon">
-					<Size x="150" y="150"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-				<Texture parentKey="Highlight" alphaMode="ADD" alpha="0.5" hidden="true">
-					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.Icon"/>
-						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-			<Layer level="ARTWORK">
-				<Texture parentKey="Bang">
-					<Size x="16" y="16"/>
-					<Anchors>
-						<Anchor point="LEFT" x="-20" y="0"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-		</Layers>
-		<Scripts>
-            <OnLoad>
-		    	Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsCallingQuest")
-			</OnLoad>
-            <OnUpdate>
-		        self:Update()
-	        </OnUpdate>
-            <OnEnter>
-                self:OnEnter()
-            </OnEnter>
-            <OnLeave>
-                self:OnLeave()
-            </OnLeave>
-		</Scripts>
-	</Frame>
-
-	<Frame parentKey="Overview" parent="AltoholicTabShadowlands" inherits="AltoDataPanelTemplate">
+	<Frame parentKey="Renown" parent="AltoholicTabShadowlands" inherits="AltoDataPanelTemplate">
 		<Layers>
 			<Layer>
 				<FontString parentKey="Title" inherits="QuestFont_Enormous">

@@ -25,7 +25,7 @@ addon:Controller("AltoholicUI.ShadowlandsOverview", {
 
 addon:Controller("AltoholicUI.ShadowlandsRenownButton", {
 	OnBind = function(self)
-        self:SetPoint("TOPLEFT", self:GetParent().Title, "BOTTOMLEFT", 10, 0)
+        self:SetPoint("TOPLEFT", self:GetParent().Title, "BOTTOMLEFT")
 	end,
 
     Update = function(self)
@@ -110,7 +110,7 @@ addon:Controller("AltoholicUI.ShadowlandsCallingsPane", {
 -- Adapted from Blizzard_CovenantCallings\CovenantCallings.lua
 addon:Controller("AltoholicUI.ShadowlandsCallingQuest", {
     OnBind = function(self)
-       self:SetPoint("TOPLEFT", 80*(self:GetID()-1) + 20, -50)
+       self:SetPoint("TOPLEFT", 80*(self:GetID()-1) + 10, -50)
     end,
     
     Update = function(self)
