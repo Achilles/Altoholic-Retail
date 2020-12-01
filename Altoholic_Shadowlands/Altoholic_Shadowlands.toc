@@ -12,3 +12,4 @@ TabShadowlands.xml
 
 Frames\Overview.xml
 Frames\Renown.xml
+Frames\Soulbinds.xml

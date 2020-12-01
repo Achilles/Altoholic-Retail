@@ -54,7 +54,7 @@
 		</Scripts>
 	</Frame>
 
-	<Frame parentKey="Overview" parent="AltoholicTabShadowlands" inherits="AltoDataPanelTemplate">
+	<Frame parentKey="OverviewPanel" parent="AltoholicTabShadowlands" inherits="AltoDataPanelTemplate">
 		<Layers>
 			<Layer>
 				<FontString parentKey="Title" inherits="QuestFont_Enormous">
@@ -62,15 +62,17 @@
 						<Anchor point="TOPLEFT" x="10" y="-10" />
 					</Anchors>
 				</FontString>
+                <FontString parentKey="NoCovenantError" inherits="GameFontNormal" text="COVENANT_MISSIONS_TOOLTIP_RETURN_TO_START">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="10" y="-10" />
+                    </Anchors>
+                </FontString>
 			</Layer>
 		</Layers>
 		<Scripts>
 			<OnLoad>
 				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsOverview")
 			</OnLoad>
-	        <OnUpdate>
-		        self:Update()
-	        </OnUpdate>
 		</Scripts>
         
 		<Frames>

@@ -7,19 +7,28 @@ local ns = addon.Tabs.Shadowlands
 
 addon:Controller("AltoholicUI.ShadowlandsOverview", {
 	OnBind = function(frame)
-		frame:Update()
+        frame:Show()
+        frame:Update()
 	end,
 	Update = function(frame)
-        local key = ns:GetAltKey()
-        local covenantData = C_Covenants.GetCovenantData(DataStore:GetCovenantID(key) or 0)
+        local covenantID = DataStore:GetCovenantID(ns:GetAltKey()) or 0 
+        local covenantData = C_Covenants.GetCovenantData(covenantID)
 
-        if covenantData and covenantData.name then	
+        if covenantID > 0 and covenantData and covenantData.name then
+            frame.RenownButton:Show()
+            frame.SoulbindButton:Show()
+            frame.Callings:Show()	
             frame.Title:SetText(covenantData.name)
+            frame.NoCovenantError:Hide()
         else
+            frame.RenownButton:Hide()
+            frame.SoulbindButton:Hide()
+            frame.Callings:Hide()
             frame.Title:SetText("")
+            frame.NoCovenantError:Show()
         end
         
-		frame:Show()
+        frame:Show()
 	end,
 })
 
@@ -73,7 +82,7 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindButton", {
 
     UpdateSoulbindName = function(self)
 	   local soulbindID = DataStore:GetActiveSoulbindID(ns:GetAltKey())
-	   if soulbindID > 0 then
+	   if soulbindID and soulbindID > 0 then
     		self:SetSoulbind(C_Soulbinds.GetSoulbindData(soulbindID))
 	   end
     end,
@@ -197,7 +206,7 @@ addon:Controller("AltoholicUI.ShadowlandsCallingQuest", {
         end
 
 	    GameTooltip:Show();
-	    GameTooltip.recalculatePadding = true;
+	    GameTooltip.recalculatePadding = true
     end,
     
     UpdateTooltipQuestActive = function(self)

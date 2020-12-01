@@ -46,7 +46,7 @@
 					<Anchor point="TOPLEFT" x="23" y="-105" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="Overview" />
+					<KeyValue key="panel" value="OverviewPanel" />
 				</KeyValues>
 			</Button>
 			<Button parentKey="MenuItem2" inherits="AltoShadowlandsMenuItemTemplate" id="2">
@@ -54,7 +54,7 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem1" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="Renown" />
+					<KeyValue key="panel" value="RenownPanel" />
 				</KeyValues>
 			</Button>
             <Button parentKey="MenuItem3" inherits="AltoShadowlandsMenuItemTemplate" id="3">
@@ -62,7 +62,7 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem2" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="Soulbind" />
+					<KeyValue key="panel" value="SoulbindsPanel" />
 				</KeyValues>
 			</Button>
             

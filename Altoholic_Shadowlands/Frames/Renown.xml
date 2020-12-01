@@ -1,149 +1,176 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="Renown.lua"></Script>
 
-	<Frame parentKey="Renown" parent="AltoholicTabShadowlands" inherits="AltoDataPanelTemplate">
+	<Button name="AltoCovenantRenownTrackButtonTemplate" virtual="true">
+		<Size x="22" y="39"/>
+		<NormalTexture atlas="CovenantSanctum-Renown-Arrow" useAtlasSize="true">
+			<Anchors>
+				<Anchor point="CENTER" y="1"/>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture atlas="CovenantSanctum-Renown-Arrow-Depressed" useAtlasSize="true">
+			<Anchors>
+				<Anchor point="CENTER" y="1"/>
+			</Anchors>
+		</PushedTexture>	
+		<DisabledTexture atlas="CovenantSanctum-Renown-Arrow-Disabled" useAtlasSize="true">
+			<Anchors>
+				<Anchor point="CENTER" y="1"/>
+			</Anchors>
+		</DisabledTexture>
+		<HighlightTexture atlas="CovenantSanctum-Renown-Arrow-Hover" useAtlasSize="true" alphaMode="ADD">
+			<Anchors>
+				<Anchor point="CENTER" y="1"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsRenownTrackButton")
+			</OnLoad>
+			<OnMouseDown>
+                self:OnMouseDown()
+            </OnMouseDown>
+			<OnMouseUp>
+                self:OnMouseUp()
+            </OnMouseUp>
+			<OnDisable>
+                self:OnDisable()
+            </OnDisable>
+		</Scripts>
+	</Button>
+    
+    <Frame name="AltoCovenantRenownLevelTemplate" virtual="true">
+		<Size x="55" y="55"/>
 		<Layers>
-			<Layer>
-				<FontString parentKey="Title" inherits="QuestFont_Enormous">
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Icon" parentArray="Textures">
+					<Size x="40" y="39"/>
 					<Anchors>
-						<Anchor point="TOPLEFT" x="10" y="-10" />
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<Texture parentKey="IconBorder" parentArray="Textures">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture parentKey="Check" atlas="CovenantSanctum-Renown-Checkmark" useAtlasSize="true" parentArray="Textures">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" x="3" y="0"/>
+					</Anchors>
+				</Texture>
+				<FontString parentKey="Level" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="BOTTOM" y="-1"/>
 					</Anchors>
 				</FontString>
+				<MaskTexture parentKey="HexMask" atlas="CovenantSanctum-Renown-Hexagon-Mask" useAtlasSize="true" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</MaskTexture>
+			</Layer>
+			<Layer level="HIGHLIGHT">
+				<Texture parentKey="HighlightTexture" parentArray="Textures" alphaMode="ADD">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>
 			<OnLoad>
-				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsOverview")
+				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsRenownLevel")
 			</OnLoad>
-	        <OnUpdate>
-		        self:Update()
-	        </OnUpdate>
+			<OnMouseUp>
+                self:OnMouseUp()
+            </OnMouseUp>
+			<OnEnter>
+                self:OnEnter()
+            </OnEnter>
+			<OnLeave function="GameTooltip_Hide"/>
 		</Scripts>
-        
+	</Frame>
+
+	<Frame parentKey="RenownPanel" parent="AltoholicTabShadowlands" inherits="AltoDataPanelTemplate" hidden="true">
+		<Scripts>
+			<OnLoad>
+				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsRenown")
+			</OnLoad>
+            <OnShow>
+                self:OnShow()
+            </OnShow>
+            <OnHide>
+                self:OnHide()
+            </OnHide>
+			<OnEvent>
+                self:OnEvent()
+            </OnEvent>
+			<OnMouseWheel>
+                self:OnMouseWheel()
+            </OnMouseWheel>
+		</Scripts>
+        <Layers>
+      	    <Layer level="BORDER">
+			    <Texture parentKey="SelectedLevelGlow">
+				    <Anchors>
+					   <Anchor point="CENTER"/>
+				    </Anchors>
+			    </Texture>
+		    </Layer>
+        </Layers>
 		<Frames>
-			<Button parentKey="RenownButton" enableMouse="true">
-                <Size x="241" y="63"/>
-                <Layers>
-                    <Layer level="OVERLAY">
-                        <FontString parentKey="Label" inherits="SystemFont_Shadow_Med3" text="LANDING_PAGE_RENOWN_LABEL">
-                            <Anchors>
-                                <Anchor point="LEFT" x="24"/>
-                            </Anchors>
-                            <Color color="HIGHLIGHT_FONT_COLOR"/>
-                        </FontString>
-                        <FontString parentKey="Renown" inherits="SystemFont_Shadow_Huge1">
-                            <Anchors>
-                                <Anchor point="CENTER" relativePoint="RIGHT" x="-50" y="0"/>
-                            </Anchors>
-                            <Color color="HIGHLIGHT_FONT_COLOR"/>
-                            </FontString>
-                        </Layer>
-                    <Layer level="OVERLAY" textureSubLevel="3">
-                        <Texture parentKey="PushedImage" setAllPoints="true" hidden="true"/>
-                    </Layer>
-                </Layers>
-                <HighlightTexture atlas="shadowlands-landingpage-soulbindsbutton-highlight" alphaMode="ADD"/>
-                <Scripts>
-        			<OnLoad>
-		          		Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsRenownButton")
-                        self:RegisterForClicks("LeftButtonUp")
+        	<Frame parentKey="TrackFrame">
+				<Size x="570" y="72"/>
+				<Anchors>
+					<Anchor point="TOP" y="-135"/>
+				</Anchors>
+				<Frames>
+					<Frame parentKey="ClipFrame" clipChildren="true" setAllPoints="true">
+						<Layers>
+							<Layer level="OVERLAY">
+								<MaskTexture parentKey="Mask" atlas="CovenantSanctum-Renown-Scroll-Mask" useAtlasSize="true" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+									<Anchors>
+										<Anchor point="CENTER"/>
+									</Anchors>
+								</MaskTexture>
+							</Layer>
+						</Layers>
+					</Frame>
+					<Button parentKey="LeftButton" inherits="AltoCovenantRenownTrackButtonTemplate">
+						<KeyValues>
+							<KeyValue key="direction" value="-1" type="number"/>
+						</KeyValues>
+						<Anchors>
+							<Anchor point="RIGHT" relativePoint="LEFT" x="-4"/>
+						</Anchors>
+					</Button>
+					<Button parentKey="RightButton" inherits="AltoCovenantRenownTrackButtonTemplate">
+						<KeyValues>
+							<KeyValue key="direction" value="1" type="number"/>
+						</KeyValues>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT" x="4"/>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>
+			        <OnLoad>
+				        Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsRenownTrackFrame")
 			        </OnLoad>
-        			<OnClick>
-		          		self:Button_OnClick(button)
-			        </OnClick>
-			        <OnUpdate>
-				        self:Update()
-			        </OnUpdate>
-                    <OnMouseDown>
-                        self:OnMouseDown()
-                    </OnMouseDown>
-                    <OnMouseUp>
-                        self:OnMouseUp()
-                    </OnMouseUp>
-                </Scripts>
-            </Button>
-            
-			<Button parentKey="SoulbindButton" enableMouse="true">
-        		<Size x="241" y="63"/>
-		        <Layers>
-			        <Layer level="Artwork">
-				        <Texture parentKey="Portrait" useAtlasSize="true"/>
-			        </Layer>
-			        <Layer level="Overlay" textureSubLevel="1">
-				        <Texture parentKey="Press" atlas="shadowlands-landingpage-soulbindsbutton-down" useAtlasSize="true" hidden="true"/>
-			        </Layer>
-			        <Layer level="Overlay" textureSubLevel="3">
-				        <Texture parentKey="Highlight" atlas="shadowlands-landingpage-soulbindsbutton-highlight" alphaMode="ADD" useAtlasSize="true" hidden="true"/>
-				        <FontString parentKey="Label" inherits="SystemFont_Shadow_Med3">
-					       <Anchors>
-						       <Anchor point="LEFT" x="24"/>
-					       </Anchors>
-				        </FontString>
-			        </Layer>
-		        </Layers>
-		        <Scripts>
-        			<OnLoad>
-		          		Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsSoulbindButton")
-                        self:RegisterForClicks("LeftButtonUp")
-			        </OnLoad>
-        			<OnClick>
-		          		self:Button_OnClick(button)
-			        </OnClick>
-			        <OnUpdate>
-				        self:Update()
-			        </OnUpdate>
-			        <OnEnter>
-                        self:OnEnter()
-                    </OnEnter>
-                    <OnLeave>
-                        self:OnLeave()
-                    </OnLeave>
-                    <OnMouseDown>
-                        self:OnMouseDown()
-                    </OnMouseDown>
-                    <OnMouseUp>
-                        self:OnMouseUp()
-                    </OnMouseUp>
-		        </Scripts>
-            </Button>
-            
-            <Frame parentKey="Callings">
-		      <Size x="241" y="105"/>
-		      <Layers>
-			     <Layer level="BACKGROUND" textureSublevel="-1">
-				    <Texture parentKey="Background" atlas="shadowlands-landingpage-divider" useAtlasSize="true">
-					   <Anchors>
-					       	<Anchor point="TOP"/>
-					   </Anchors>
-				    </Texture>
-			     </Layer>
-			     <Layer level="BACKGROUND">
-				    <Texture parentKey="Decor">
-					<Anchors>
-						<Anchor point="TOP" x="0" y="-50"/>
-					</Anchors>
-				</Texture>
-			         </Layer>
-			     <Layer level="ARTWORK">
-				<FontString parentKey="Title" inherits="GameFontHighlightLarge" text="CALLINGS_QUESTS">
-					<Anchors>
-						<Anchor point="TOPLEFT" x="45" y="-14"/>
-					</Anchors>
-				</FontString>
-			     </Layer>
-		      </Layers>
-              <Frames>
-                <Frame parentKey="Quest1" inherits="AltoShadowlandsCallingQuestTemplate" id="1"/>
-                <Frame parentKey="Quest2" inherits="AltoShadowlandsCallingQuestTemplate" id="2"/>
-                <Frame parentKey="Quest3" inherits="AltoShadowlandsCallingQuestTemplate" id="3"/>
-              </Frames>
-		      <Scripts>
-        		<OnLoad>
-		        	Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsCallingsPane")
-			    </OnLoad>
-		      </Scripts>
-	        </Frame>
-		</Frames>
+					<OnHide>
+                        self:OnHide()
+                    </OnHide>
+					<OnUpdate>
+                        self:OnUpdate(elapsed)
+                    </OnUpdate>
+				</Scripts>
+			</Frame>
+        </Frames>
         
 	</Frame>
 </Ui>

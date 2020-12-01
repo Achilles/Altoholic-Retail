@@ -11,9 +11,9 @@ local THIS_ACCOUNT = "Default"
 local currentAccount = THIS_ACCOUNT
 local currentRealm = GetRealmName()
 local currentAlt = UnitName("player")
+local currentPanel
 
 -- ** Utility **
-local DDM_Add = addon.Helpers.DDM_Add
 local DDM_AddTitle = addon.Helpers.DDM_AddTitle
 local DDM_AddCloseMenu = addon.Helpers.DDM_AddCloseMenu
 
@@ -71,6 +71,11 @@ local function OnCharacterChange(self)
 	
 	CloseDropDownMenus()
 	AltoholicTabShadowlands:Refresh()
+    
+    if not currentPanel then currentPanel = AltoholicTabShadowlands.OverviewPanel end
+    
+    currentPanel:Hide()
+    currentPanel:Update()
 end
 
 local function CharactersIcon_Initialize(self, level)
@@ -126,8 +131,6 @@ function ns:Icon_OnEnter(icon)
 	ToggleDropDownMenu(1, nil, AltoholicTabShadowlands.ContextualMenu, icon, 0, -5)
 end
 
-
-
 addon:Controller("AltoholicUI.TabShadowlands", {
 	OnBind = function(frame)
         -- Setup aliases
@@ -142,16 +145,15 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 		
         -- Set section 1 as default
         frame:MenuItem_Highlight(1)
-		--frame:SetMode(1)
         
         frame.CharactersIcon.Icon:SetTexture(addon:GetCharacterIcon())
         
         frame:Refresh()
 	end,
 	HideAll = function(frame)
-		frame.Overview:Hide()
-		frame.Renown:Hide()
-        frame.Soulbinds:Hide()
+		frame.OverviewPanel:Hide()
+		frame.RenownPanel:Hide()
+        frame.SoulbindsPanel:Hide()
 	end,
 	Refresh = function(frame)
         local key = ns:GetAltKey()
@@ -176,6 +178,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 		
 		if panel then
 			frame[panel]:Update()
+            currentPanel = frame[panel]
 		end
 	end,
 })
