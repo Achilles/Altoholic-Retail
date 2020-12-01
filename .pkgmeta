@@ -8,6 +8,7 @@ move-folders:
  Altoholic/Altoholic_Grids: Altoholic_Grids
  Altoholic/Altoholic_Guild: Altoholic_Guild
  Altoholic/Altoholic_Search: Altoholic_Search
+ Altoholic/Altoholic_Shadowlands: Altoholic_Shadowlands
  Altoholic/Altoholic_Summary: Altoholic_Summary
  Altoholic/DataStore/DataStore: DataStore
  Altoholic/DataStore_Achievements/DataStore_Achievements: DataStore_Achievements
@@ -48,6 +49,9 @@ externals:
   DataStore_Containers:
     url: https://github.com/teelolws/DataStore_Containers
     tag: latest
+  DataStore_Covenants:
+    url: https://github.com/teelolws/DataStore_Covenants
+    tag:latest
   DataStore_Crafts:
     url: https://github.com/teelolws/DataStore_Crafts
     tag: latest
