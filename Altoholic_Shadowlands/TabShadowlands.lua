@@ -137,11 +137,13 @@ addon:Controller("AltoholicUI.TabShadowlands", {
         frame.Overview = frame.MenuItem1
         frame.Renown = frame.MenuItem2
         frame.Soulbinds = frame.MenuItem3
+        frame.SanctumFeatures = frame.MenuItem4
         
 		-- Localise section names
         frame.Overview:SetText(OVERVIEW)
 		frame.Renown:SetText(COVENANT_SANCTUM_TAB_RENOWN)
         frame.Soulbinds:SetText(COVENANT_PREVIEW_SOULBINDS)
+        frame.SanctumFeatures:SetText(COVENANT_PREVIEW_SANCTUM_FEATURE)
 		
         -- Set section 1 as default
         frame:MenuItem_Highlight(1)
@@ -154,6 +156,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 		frame.OverviewPanel:Hide()
 		frame.RenownPanel:Hide()
         frame.SoulbindsPanel:Hide()
+        frame.SanctumFeaturesPanel:Hide()
 	end,
 	Refresh = function(frame)
         local key = ns:GetAltKey()
@@ -167,7 +170,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 	end,
 	MenuItem_Highlight = function(frame, id)
 		-- highlight the current menu item
-		for i = 1, 3 do 
+		for i = 1, 4 do 
 			frame["MenuItem"..i]:UnlockHighlight()
 		end
 		frame["MenuItem"..id]:LockHighlight()

@@ -13,3 +13,4 @@ TabShadowlands.xml
 Frames\Overview.xml
 Frames\Renown.xml
 Frames\Soulbinds.xml
+Frames\SanctumFeatures.xml

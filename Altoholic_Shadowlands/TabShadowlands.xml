@@ -65,6 +65,14 @@
 					<KeyValue key="panel" value="SoulbindsPanel" />
 				</KeyValues>
 			</Button>
+            <Button parentKey="MenuItem4" inherits="AltoShadowlandsMenuItemTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem3" relativePoint="BOTTOMLEFT" x="0" y="0" />
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="panel" value="SanctumFeaturesPanel" />
+				</KeyValues>
+            </Button>
             
             <Frame parentKey="ContextualMenu" inherits="AltoContextualMenuTemplate" />
 		</Frames>
