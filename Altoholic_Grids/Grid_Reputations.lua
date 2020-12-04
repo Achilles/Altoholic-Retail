@@ -277,11 +277,14 @@ local Factions = {
         name = EXPANSION_NAME8, -- "Shadowlands"
 		{	-- [1]
 			name = OTHER,
-            { name = DataStore:GetFactionName(2410), icon = "inv_tabard_maldraxxus_d_01" },
-            { name = DataStore:GetFactionName(2465), icon = "inv_tabard_ardenweald_d_01" },
-			{ name = DataStore:GetFactionName(2413), icon = "inv_tabard_revendreth_d_01" },
-			{ name = DataStore:GetFactionName(2407), icon = "inv_tabard_bastion_d_01" },
-            { name = DataStore:GetFactionName(2432), icon = "inv_helm_cloth_oribosdungeon_c_01" },
+			{ name = DataStore:GetFactionName(2413), icon = "inv_tabard_revendreth_d_01" },         -- Court of Harvesters
+            { name = DataStore:GetFactionName(2464), icon = "inv_ardenwealdstagmount_white" },      -- Court of Night
+            --{ name = DataStore:GetFactionName(2463), icon = "inv_mothardenwealdmount_mint"},        -- Marasimus                   [uncomment if this is ever fixed]
+			{ name = DataStore:GetFactionName(2407), icon = "inv_tabard_bastion_d_01" },            -- The Ascended
+            { name = DataStore:GetFactionName(2439), icon = "inv_deathwargmountpurple" },           -- The Avowed
+            { name = DataStore:GetFactionName(2410), icon = "inv_tabard_maldraxxus_d_01" },         -- The Undying Army
+            { name = DataStore:GetFactionName(2465), icon = "inv_tabard_ardenweald_d_01" },         -- The Wild Hunt
+            { name = DataStore:GetFactionName(2432), icon = "inv_helm_cloth_oribosdungeon_c_01" },  -- Ve'nari
 		},
     },
 	{
