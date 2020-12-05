@@ -16,6 +16,7 @@ local currentPanel
 -- ** Utility **
 local DDM_AddTitle = addon.Helpers.DDM_AddTitle
 local DDM_AddCloseMenu = addon.Helpers.DDM_AddCloseMenu
+local classArray = {"DEATHKNIGHT", "DEMONHUNTER", "DRUID", "HUNTER", "MAGE", "MONK", "PALADIN", "PRIEST", "ROGUE", "SHAMAN", "WARLOCK", "WARRIOR"}
 
 local function GetCharacterLoginText(character)
 	local last = DataStore:GetLastLogout(character)
@@ -78,6 +79,7 @@ local function OnCharacterChange(self)
     currentPanel:Update()
 end
 
+local currentIcon
 local function CharactersIcon_Initialize(self, level)
 	local currentCharacterKey = ns:GetAltKey()
     local currentAccount, currentRealm, currentName = strsplit(".", currentCharacterKey)
@@ -106,7 +108,9 @@ local function CharactersIcon_Initialize(self, level)
 		
 		local nameList = {}		-- we want to list characters alphabetically
 		for _, character in pairs(DataStore:GetCharacters(menuRealm, menuAccount)) do
-			table.insert(nameList, character)	-- we can add the key instead of just the name, since they will all be like account.realm.name, where account & realm are identical
+            if select(2, DataStore:GetCharacterClass(character)) == classArray[currentIcon] then
+			     table.insert(nameList, character)	-- we can add the key instead of just the name, since they will all be like account.realm.name, where account & realm are identical
+            end
 		end
 		table.sort(nameList)
 		
@@ -125,14 +129,25 @@ local function CharactersIcon_Initialize(self, level)
 	end
 end
 
-function ns:Icon_OnEnter(icon)
-	addon:DDM_Initialize(AltoholicTabShadowlands.ContextualMenu, CharactersIcon_Initialize)
-	CloseDropDownMenus()
-	ToggleDropDownMenu(1, nil, AltoholicTabShadowlands.ContextualMenu, icon, 0, -5)
-end
+addon:Controller("AltoholicUI.TabShadowlandsCharacterIcon", {
+    Icon_OnEnter = function(self, icon)
+        currentIcon = self:GetID()
+	    addon:DDM_Initialize(AltoholicTabShadowlands.ContextualMenu, CharactersIcon_Initialize)
+	    CloseDropDownMenus()
+	    ToggleDropDownMenu(1, nil, AltoholicTabShadowlands.ContextualMenu, icon, 0, -5)
+    end,
+    
+    OnShow = function(self)
+        local faction = "Alliance"
+        if ((self:GetID() % 2) == 1) then faction = "Horde" end
+        self:SetClass(classArray[self:GetID()], faction)
+    end,
+})
 
 addon:Controller("AltoholicUI.TabShadowlands", {
 	OnBind = function(frame)
+        frame.ClassIcons:Update("THIS_ACCOUNT")
+    
         -- Setup aliases
         frame.Overview = frame.MenuItem1
         frame.Renown = frame.MenuItem2
@@ -149,8 +164,6 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 		
         -- Set section 1 as default
         frame:MenuItem_Highlight(1)
-        
-        frame.CharactersIcon.Icon:SetTexture(addon:GetCharacterIcon())
         
         frame:Refresh()
 	end,

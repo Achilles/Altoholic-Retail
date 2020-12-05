@@ -1,11 +1,18 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="TabShadowlands.lua"></Script>
 
-	<Button name="AltoTabShadowlandsIconTemplate" inherits="AltoButtonTemplate" virtual="true">
+	<Button name="AltoTabShadowlandsCharacterIconTemplate" inherits="AltoClassIconTemplate" virtual="true">
 		<Scripts>
+            <OnLoad>
+				Altoholic:BindViewToController(self, "AltoholicUI.TabShadowlandsCharacterIcon", "AltoholicUI.Button,AltoholicUI.ClassIcon" )
+                Altoholic:BindViewToController(self, "AltoholicUI.TabShadowlandsCharacterIcon")
+			</OnLoad>
 			<OnEnter>
-				Altoholic.Tabs.Shadowlands:Icon_OnEnter(self)
+				self:Icon_OnEnter(self)
 			</OnEnter>
+            <OnShow>
+                self:OnShow()
+            </OnShow>
 		</Scripts>
 	</Button>
     
@@ -35,7 +42,12 @@
 				</Layer>
 			</Layers>
 		<Frames>
-			<Button parentKey="CharactersIcon" inherits="AltoTabShadowlandsIconTemplate" id="1">
+			<Button parentKey="ClassIcons" inherits="AltoClassIconsContainerTemplate" id="1">
+                <KeyValues>
+					<KeyValue key="numIcons" value="12" type="number" />
+					<KeyValue key="iconTemplate" value="AltoTabShadowlandsCharacterIconTemplate" />
+					<KeyValue key="tabName" value="Shadowlands" />
+				</KeyValues>
 				<Anchors>
 					<Anchor point="TOP" x="0" y="-50" />
 				</Anchors>
