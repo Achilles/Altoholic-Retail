@@ -142,9 +142,10 @@
     </Frame>
 
 	<Frame parentKey="AnimaDiversionPanel" parent="AltoholicTabShadowlands" inherits="MapCanvasFrameTemplate" enableMouse="true">
-		<Size x="416" y="285"/>
+        <Size x="384" y="276"/>
         <Anchors>
 			<Anchor point="TOPLEFT" x="200" y="-110"/>
+            <!--Anchor point="BOTTOMLEFT" x="200" y="50"/-->
 		</Anchors>
 		<Frames>
 			<Frame parentKey="NineSlice" inherits="NineSlicePanelTemplate">
@@ -282,6 +283,9 @@
 			<OnHide>
                 self:OnHide()
             </OnHide>
+            <OnEvent>
+                self:OnEvent()
+            </OnEvent>
 		</Scripts>
 	</Frame>
 </Ui>
