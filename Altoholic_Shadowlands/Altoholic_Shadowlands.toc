@@ -14,4 +14,4 @@ Frames\Overview.xml
 Frames\Renown.xml
 Frames\Soulbinds.xml
 Frames\SanctumFeatures.xml
-Frames\Conduit.xml
+Frames\AnimaDiversion.xml

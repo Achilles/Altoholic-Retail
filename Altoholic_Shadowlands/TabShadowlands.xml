@@ -90,7 +90,7 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem4" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="ConduitPanel" />
+					<KeyValue key="panel" value="AnimaDiversionPanel" />
 				</KeyValues>
             </Button>
             

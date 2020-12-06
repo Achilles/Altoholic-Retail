@@ -1,5 +1,5 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="Conduit.lua"/>
+	<Script file="AnimaDiversion.lua"/>
 
 	<Frame name="AltoAnimaDiversionPinTemplate" enableMouse="true" virtual="true">
 		<Layers>
@@ -15,7 +15,7 @@
 		</Layers>
         <Scripts>
             <OnLoad>
-                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitPinTemplate")
+                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionPinTemplate")
             </OnLoad>
         </Scripts>
 	</Frame>
@@ -32,7 +32,7 @@
 		</Frames>
         <Scripts>
             <OnLoad>
-                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitModelScenePinTemplate")
+                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionModelScenePinTemplate")
             </OnLoad>
         </Scripts>
 	</Frame>
@@ -104,7 +104,7 @@
 		</Animations>
         <Scripts>
             <OnLoad>
-                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitConnectionTemplate")
+                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionConnectionTemplate")
             </OnLoad>
         </Scripts>
 	</Frame>
@@ -136,15 +136,15 @@
     <Frame name="AltoAnimaDiversion_WorldQuestPinTemplate" inherits="WorldQuestPinTemplate" virtual="true">
         <Scripts>
             <OnLoad>
-                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitWorldQuestPinTemplate")
+                Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionWorldQuestPinTemplate")
             </OnLoad>
         </Scripts>
     </Frame>
 
-	<Frame parentKey="ConduitPanel" parent="AltoholicTabShadowlands" inherits="MapCanvasFrameTemplate" enableMouse="true">
-		<Size x="925" y="635"/>
-		<Anchors>
-			<Anchor point="CENTER" x="0" y="0"/>
+	<Frame parentKey="AnimaDiversionPanel" parent="AltoholicTabShadowlands" inherits="MapCanvasFrameTemplate" enableMouse="true">
+		<Size x="416" y="285"/>
+        <Anchors>
+			<Anchor point="TOPLEFT" x="300" y="-110"/>
 		</Anchors>
 		<Frames>
 			<Frame parentKey="NineSlice" inherits="NineSlicePanelTemplate">
@@ -183,7 +183,7 @@
 				</Frames>
 				<Scripts>
                     <OnLoad>
-                        Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitCurrencyFrame")
+                        Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionCurrencyFrame")
                     </OnLoad>
 					<OnEnter>
                         self:OnEnter()
@@ -209,7 +209,7 @@
 				</Frames>
 				<Scripts>
                     <OnLoad>
-                        Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitReinforceProgressFrame")
+                        Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionReinforceProgressFrame")
                     </OnLoad>
 					<OnEnter>
                         self:OnEnter()
@@ -248,7 +248,7 @@
 						</Anchors>
 						<Scripts>
                             <OnLoad>
-                            	Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitReinforceButton")
+                            	Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionReinforceButton")
                             </OnLoad>
 							<OnClick>
                                 self:OnClick()
@@ -264,7 +264,7 @@
 				</Frames>
 				<Scripts>
                     <OnLoad>
-                        Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitReinforceInfoFrame")
+                        Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionReinforceInfoFrame")
                     </OnLoad>
 					<OnHide>
                         self:OnHide()
@@ -274,7 +274,7 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsConduitPanel")
+				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsAnimaDiversionPanel")
 			</OnLoad>
 			<OnShow>
                 self:OnShow()

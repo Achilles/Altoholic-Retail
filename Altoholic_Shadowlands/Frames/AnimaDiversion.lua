@@ -140,7 +140,7 @@ function AnimaDiversionDataProviderMixin:RefreshAllData(fromOnShow)
 
 	self:AddModelScene();
 
-	local originPosition = DataStore:GetConduitOriginPosition(ns:GetAltKey())
+	local originPosition = DataStore:GetAnimaDiversionOriginPosition(ns:GetAltKey())
 	if not originPosition then
 		return;
 	end
@@ -207,7 +207,7 @@ local AnimaDiversionModelScenePinMixin = CreateFromMixins(MapCanvasPinMixin);
 function AnimaDiversionModelScenePinMixin:OnLoad()
 	self:UseFrameLevelType("PIN_FRAME_LEVEL_ANIMA_DIVERSION_MODELSCENE_PIN");
 end
-addon:Controller("AltoholicUI.ShadowlandsConduitModelScenePinTemplate", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionModelScenePinTemplate", {
     OnBind = function(self)
         Mixin(self, AnimaDiversionModelScenePinMixin)
     end,
@@ -217,7 +217,7 @@ local AnimaDiversionPinMixin = CreateFromMixins(MapCanvasPinMixin);
 function AnimaDiversionPinMixin:OnLoad()
 	self:UseFrameLevelType("PIN_FRAME_LEVEL_ANIMA_DIVERSION_PIN");
 end
-addon:Controller("AltoholicUI.ShadowlandsConduitPinTemplate", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPinTemplate", {
     OnBind = function(self)
         Mixin(self, AnimaDiversionPinMixin)
     end,
@@ -375,7 +375,7 @@ function AnimaDiversionPinMixin:OnClick(button)
 	end
 end
 
-addon:Controller("AltoholicUI.ShadowlandsConduitConnectionTemplate", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionConnectionTemplate", {
     Setup = function(self, textureKit, origin, pin)
     		-- Anchor straight up from the origin
     	self:SetPoint("BOTTOM", origin, "CENTER");
@@ -428,7 +428,7 @@ function AnimaDiversion_WorldQuestPinMixin:OnLoad()
 	self:SetNudgeZoomedOutFactor(1.0);
 	self:SetNudgeZoomedInFactor(0.25);
 end
-addon:Controller("AltoholicUI.ShadowlandsConduitWorldQuestPinTemplate", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionWorldQuestPinTemplate", {
     OnBind = function(self)
         Mixin(self, AnimaDiversion_WorldQuestPinMixin)
     end,
@@ -468,7 +468,7 @@ local textureKitToConfirmSound = {
 	["Necrolord"] = SOUNDKIT.UI_9_0_ANIMA_DIVERSION_MALDRAXXUS_CONFIRM_CHANNEL, 
 };
 
-addon:Controller("AltoholicUI.ShadowlandsConduitPanel", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
 	OnBind = function(self)
       	MapCanvasMixin.OnLoad(self);	
       	self:SetShouldZoomInOnClick(false);
@@ -654,7 +654,7 @@ addon:Controller("AltoholicUI.ShadowlandsConduitPanel", {
     end,
 })
  
-addon:Controller("AltoholicUI.ShadowlandsConduitCurrencyFrame", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionCurrencyFrame", {
 	OnBind = function(self)
     end,
 
@@ -670,7 +670,7 @@ addon:Controller("AltoholicUI.ShadowlandsConduitCurrencyFrame", {
     end, 
 })
 
-addon:Controller("AltoholicUI.ShadowlandsConduitReinforceProgressFrame", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionReinforceProgressFrame", {
 	OnBind = function(self)
     end,
 
@@ -686,7 +686,7 @@ addon:Controller("AltoholicUI.ShadowlandsConduitReinforceProgressFrame", {
     end,
 }) 
 
-addon:Controller("AltoholicUI.ShadowlandsConduitReinforceInfoFrame", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionReinforceInfoFrame", {
 	OnBind = function(self)
     end,
     
@@ -745,7 +745,7 @@ addon:Controller("AltoholicUI.ShadowlandsConduitReinforceInfoFrame", {
     end,
 }) 
 
-addon:Controller("AltoholicUI.ShadowlandsConduitReinforceButton", {
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionReinforceButton", {
     OnEnter = function(self)
     	if (not self:GetParent().canReinforce) then 
     		GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 20, 0);
