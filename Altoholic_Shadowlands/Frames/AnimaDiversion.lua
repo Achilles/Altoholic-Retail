@@ -461,13 +461,6 @@ local textureKitToCovenantId = {
 	["Necrolord"] = 4, 
 };
 
-local textureKitToConfirmSound = {
-	["Kyrian"] = SOUNDKIT.UI_9_0_ANIMA_DIVERSION_BASTION_CONFIRM_CHANNEL,
-	["Venthyr"] = SOUNDKIT.UI_9_0_ANIMA_DIVERSION_REVENDRETH_CONFIRM_CHANNEL,
-	["NightFae"] = SOUNDKIT.UI_9_0_ANIMA_DIVERSION_ARDENWEALD_CONFIRM_CHANNEL,
-	["Necrolord"] = SOUNDKIT.UI_9_0_ANIMA_DIVERSION_MALDRAXXUS_CONFIRM_CHANNEL, 
-};
-
 addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
 	OnBind = function(self)
       	MapCanvasMixin.OnLoad(self);	
@@ -493,19 +486,11 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
 	   MapCanvasMixin.OnShow(self);
 
 	   self:ResetZoom();
-
-	   PlaySound(SOUNDKIT.UI_COVENANT_ANIMA_DIVERSION_OPEN, nil, SOUNDKIT_ALLOW_DUPLICATES);
-
-	   if IsAnyNodeActive() then
-	       PlaySound(self.covenantData.animaChannelActiveSoundKit, nil, SOUNDKIT_ALLOW_DUPLICATES);
-	   end
     end,
 
     OnHide = function(self)
 	   MapCanvasMixin.OnHide(self);
 	   self.ReinforceInfoFrame:Hide();
-	   self:StopGemsFullSound();
-	   PlaySound(SOUNDKIT.UI_COVENANT_ANIMA_DIVERSION_CLOSE, nil, SOUNDKIT_ALLOW_DUPLICATES);
     end,  
 
     HasAvailableNode = function(self)
@@ -549,13 +534,6 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
     	modelScene:AddEffect(effectID, gem, gem);
     end,
 
-    StopGemsFullSound = function(self)
-    	if self.gemsFullSoundHandle then
-    		StopSound(self.gemsFullSoundHandle);
-    		self.gemsFullSoundHandle = nil;
-    	end
-    end,
-
     SetupBolsterProgressBar = function(self)
     	self.bolsterProgressGemPool:ReleaseAll(); 
     	self.ReinforceProgressFrame.ModelScene:ClearEffects();
@@ -573,15 +551,6 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
     
     	local isReinforceReady = self:CanReinforceNode();
     
-    	if isReinforceReady then
-    		if not self.gemsFullSoundHandle then
-    			local _, soundHandle = PlaySound(self.covenantData.animaGemsFullSoundKit);
-    			self.gemsFullSoundHandle = soundHandle;
-    		end
-    	else
-    		self:StopGemsFullSound();
-    	end
-    
     	local firstNewGem = (newBolsterProgress - numNewGems) + 1;
     
     	for i=1, newBolsterProgress do
@@ -591,10 +560,6 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
     
     		if isNewGem then
     			self:AddBolsterEffectToGem(self.lastGem, newGemEffectID, true);
-    
-    			if not isReinforceReady then
-    				PlaySound(self.covenantData.animaNewGemSoundKit, nil, SOUNDKIT_ALLOW_DUPLICATES);
-    			end
     		end
     
     		if isReinforceReady then
@@ -741,7 +706,6 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionReinforceInfoFrame", {
     	node:SetSelectedState(true);
     	self.Title:SetText(self.selectedNode.nodeData.name);
     	self.AnimaNodeReinforceButton:Enable(); 
-    	PlaySound(AnimaDiversionFrame.covenantData.animaReinforceSelectSoundKit, nil, SOUNDKIT_ALLOW_DUPLICATES);
     end,
 }) 
 

@@ -144,7 +144,7 @@
 	<Frame parentKey="AnimaDiversionPanel" parent="AltoholicTabShadowlands" inherits="MapCanvasFrameTemplate" enableMouse="true">
 		<Size x="416" y="285"/>
         <Anchors>
-			<Anchor point="TOPLEFT" x="300" y="-110"/>
+			<Anchor point="TOPLEFT" x="200" y="-110"/>
 		</Anchors>
 		<Frames>
 			<Frame parentKey="NineSlice" inherits="NineSlicePanelTemplate">
