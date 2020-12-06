@@ -55,6 +55,9 @@ local ANIMA_SELECTION_MODEL_EFFECT_ID = 35;
 
 local AnimaDiversionDataProviderMixin = CreateFromMixins(MapCanvasDataProviderMixin);
 
+function AnimaDiversionDataProviderMixin:OnShow()
+end 
+
 function AnimaDiversionDataProviderMixin:OnHide()
 	self:ResetModelScene();
 end 
@@ -217,12 +220,6 @@ local AnimaDiversionPinMixin = CreateFromMixins(MapCanvasPinMixin);
 function AnimaDiversionPinMixin:OnLoad()
 	self:UseFrameLevelType("PIN_FRAME_LEVEL_ANIMA_DIVERSION_PIN");
 end
-addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPinTemplate", {
-    OnBind = function(self)
-        Mixin(self, AnimaDiversionPinMixin)
-    end,
-})
- 
 
 function AnimaDiversionPinMixin:SetupOrigin()
 	self.visualState = nil;
@@ -375,6 +372,12 @@ function AnimaDiversionPinMixin:OnClick(button)
 	end
 end
 
+addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPinTemplate", {
+    OnBind = function(self)
+        Mixin(self, AnimaDiversionPinMixin)
+    end,
+})
+
 addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionConnectionTemplate", {
     Setup = function(self, textureKit, origin, pin)
     		-- Anchor straight up from the origin
@@ -469,6 +472,7 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
       	self:SetShouldPanOnClick(false);
       	self:AddStandardDataProviders();
       	self.bolsterProgressGemPool = CreateFramePool("FRAME", self.ReinforceProgressFrame, "AltoAnimaDiversionBolsterProgressGemTemplate");
+        AltoholicFrame:HookScript("OnSizeChanged", function() self.ScrollContainer:OnCanvasSizeChanged() end)
 	end,
     
 	Update = function(self) 
@@ -491,21 +495,11 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
     OnHide = function(self)
 	   MapCanvasMixin.OnHide(self);
 	   self.ReinforceInfoFrame:Hide();
-    end,  
-
-    HasAvailableNode = function(self)
-    	local animaNodes = DataStore:GetAnimaDiversionNodes(ns:GetAltKey()) 
-    	if animaNodes then
-    		for _, nodeData in ipairs(animaNodes) do
-    			if nodeData.state == Enum.AnimaDiversionNodeState.Available then
-    				return true;
-    			end
-    		end
-    	end
-    
-    	return false;
     end,
-
+    
+    OnEvent = function(self, event, ...)
+    	MapCanvasMixin.OnEvent(self, event, ...);
+    end,
 
     SetExclusiveSelectionNode = function(self, node)
     	for pin in self:EnumeratePinsByTemplate("AltoAltoAnimaDiversionPinTemplate") do
@@ -594,8 +588,7 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
     	end
     
     	return gem;
-    end, 
-
+    end,
 
     AddStandardDataProviders = function(self)
     	self:AddDataProvider(CreateFromMixins(AnimaDiversionDataProviderMixin));
@@ -610,11 +603,12 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
 	    SetupTextureKitOnRegions(self.uiTextureKit, frame, regions, TextureKitConstants.SetVisibility, TextureKitConstants.UseAtlasSize)
     end,  
 
-    SetupCurrencyFrame = function(self) 
-    	local animaCurrencyID, maxDisplayableValue = C_CovenantSanctumUI.GetAnimaInfo() -- appears to be constant, and works on non-Shadowlands characters. No need to move to DataStore.
-    	local currencyInfo = DataStore:GetCurrencyInfo(ns:GetAltKey(), animaCurrencyID);
-    	if(currencyInfo) then 
-    		self.AnimaDiversionCurrencyFrame.CurrencyFrame.Quantity:SetText(ANIMA_DIVERSION_CURRENCY_DISPLAY:format(currencyInfo.quantity, currencyInfo.iconFileID));
+    SetupCurrencyFrame = function(self)
+        local info = DataStore:GetAnimaCurrencyInfo(ns:GetAltKey())
+        if not info then return end 
+    	local animaCurrencyID, maxDisplayableValue, count, icon = info.currencyID, info.maxDisplayable, info.count, info.icon
+    	if(count) then 
+    		self.AnimaDiversionCurrencyFrame.CurrencyFrame.Quantity:SetText(ANIMA_DIVERSION_CURRENCY_DISPLAY:format(count, icon));
     	end 
     end,
 })
