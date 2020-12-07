@@ -355,7 +355,7 @@ function AnimaDiversionPinMixin:OnClick(button)
 		return;
 	end 
 
-	if AnimaDiversionFrame.disallowSelection or button ~= "LeftButton" then	-- if selection is disabled or they didn't use left button, don't do anything.
+	if AltoholicTabShadowlands.AnimaDiversionPanel.disallowSelection or button ~= "LeftButton" then	-- if selection is disabled or they didn't use left button, don't do anything.
 		return;
 	end
 
@@ -364,7 +364,7 @@ function AnimaDiversionPinMixin:OnClick(button)
 			return;
 		end
 
-		AnimaDiversionFrame.ReinforceInfoFrame:SelectNodeToReinforce(self);
+		AltoholicTabShadowlands.AnimaDiversionPanel.ReinforceInfoFrame:SelectNodeToReinforce(self);
 	else
 		if self.nodeData.state == Enum.AnimaDiversionNodeState.Available then 
 			StaticPopup_Show("ANIMA_DIVERSION_CONFIRM_CHANNEL", self.nodeData.name, nil, self);
@@ -475,8 +475,15 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
         AltoholicFrame:HookScript("OnSizeChanged", function() self.ScrollContainer:OnCanvasSizeChanged() end)
 	end,
     
-	Update = function(self) 
-    	self.covenantData = C_Covenants.GetCovenantData(DataStore:GetCovenantID(ns:GetAltKey()))
+	Update = function(self)
+        local covenantID = DataStore:GetCovenantID(ns:GetAltKey())
+        if not covenantID or covenantID == 0 then
+            -- hide everything instead; character doesn't have a covenant
+            self:Hide()
+            return
+        end
+        
+    	self.covenantData = C_Covenants.GetCovenantData(covenantID)
         self.uiTextureKit = self.covenantData.textureKit
     	local mapIDs = {["NightFae"] = 1739, ["Venthyr"] = 1738, ["Kyrion"] = 1813, ["Necrolord"] = 1814} -- TODO: ge the right names/numbers for other covenants
         self.mapID = mapIDs[self.uiTextureKit] 
