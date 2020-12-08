@@ -8,8 +8,20 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindPanel", {
 	Update = function(self)    	
     	local character = ns:GetAltKey()
     	if not character then return end
+        
+        local covenantID = DataStore:GetCovenantID(ns:GetAltKey())
+        if not covenantID or covenantID == 0 then
+            self:Hide()
+            self.Tree1:Hide()
+            self.Tree2:Hide()
+            self.Tree3:Hide()
+            return
+        end
+        
         self:Show()
         self.Tree1:Show()
+        self.Tree2:Show()
+        self.Tree3:Show()
 	end,
 })
 
@@ -69,24 +81,12 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindTreeNodeLink", {
     			foreground:SetShown(true);
     			foreground:SetVertexColor(.3, .3, .3);
     		end
-    		self.FlowAnim1:Play();
-    		self.FlowAnim2:Play();
-    		self.FlowAnim3:Play();
-    		self.FlowAnim4:Play();
-    		self.FlowAnim5:Play();
-    		self.FlowAnim6:Play();
     	elseif state == Enum.SoulbindNodeState.Selected then
     		self:DesaturateHierarchy(0);
     		for _, foreground in ipairs(self.foregrounds) do
     			foreground:SetShown(true);
     			foreground:SetVertexColor(.192, .686, .941);
     		end
-    		self.FlowAnim1:Play();
-    		self.FlowAnim2:Play();
-    		self.FlowAnim3:Play();
-    		self.FlowAnim4:Play();
-    		self.FlowAnim5:Play();
-    		self.FlowAnim6:Play();
     	end
     end,
 
@@ -642,7 +642,8 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindTree", {
     OnShow = function(self)
     	local covenantID = DataStore:GetCovenantID(ns:GetAltKey())
     	if covenantID == 0 then
-    		error("You are not in a required covenant.");
+    		self:Hide()
+            return
     	end
     
     	local soulbindIndex = self:GetID()
@@ -676,14 +677,6 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindTree", {
     	return self.nodeFrames;
     end,
 
-    PlayNodeSelectionAnim = function(self, button)
-    	local frame = self.pools:Acquire(SELECT_ANIM_TEMPLATE);
-    	frame:SetAllPoints(button.FxModelScene);
-    	frame:Show();
-    	frame.Anim:SetScript("OnFinished", GenerateClosure(self.OnSelectAnimFinished, self, swirlFrame));
-    	frame.Anim:Play();
-    end,
-
     OnSelectAnimFinished = function(self, frame, anim)
     	local pool = self.pools:GetPool(SELECT_ANIM_TEMPLATE);
     	pool:Release(frame);
@@ -714,9 +707,8 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindTree", {
     Init = function(self, soulbindData)
     	self.soulbindID = soulbindData.ID;
     
-    	local cellVerticalDist = 61;
-    	local cellHorizontalDist = 85;
-    	local cellChevronDist = cellVerticalDist / 3.8;
+    	local cellVerticalDist = 38;
+    	local cellHorizontalDist = 70;
     	local tree = soulbindData.tree;
     	local nodes = tree.nodes;
         
@@ -737,13 +729,9 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindTree", {
   			local column = nodeFrame:GetColumn();
   			local x = column * cellHorizontalDist;
   			local y = row * cellVerticalDist;
-  			local centerColumn = column == 1;
-  			if centerColumn then
-  				y = y + NegateIf(cellChevronDist, row < 4);
-  			end
   
   			local coord = {x = x, y = -y};
-  			nodeFrame:SetPoint("CENTER", nodeFrame:GetParent(), "TOPLEFT", coord.x, coord.y);
+  			nodeFrame:SetPoint("TOPLEFT", nodeFrame:GetParent(), "TOPLEFT", coord.x, coord.y);
   			nodeFrame.coord = coord;
   
   			local nodeID = nodeFrame:GetID();
@@ -764,14 +752,14 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindTree", {
   					local offset = toColumn - fromColumn;
   					
   					if offset < 0 then
-  						linkFrame:SetPoint("BOTTOMRIGHT", linkFromFrame, "CENTER");
-  						linkFrame:SetPoint("TOPLEFT", linkToFrame, "CENTER");
+  						linkFrame:SetPoint("BOTTOMRIGHT", linkFromFrame, "TOPLEFT");
+  						linkFrame:SetPoint("TOPLEFT", linkToFrame, "BOTTOMRIGHT");
   					elseif offset > 0 then
-  						linkFrame:SetPoint("BOTTOMLEFT", linkFromFrame, "CENTER");
-  						linkFrame:SetPoint("TOPRIGHT", linkToFrame, "CENTER");
+  						linkFrame:SetPoint("BOTTOMLEFT", linkFromFrame, "TOPRIGHT");
+  						linkFrame:SetPoint("TOPRIGHT", linkToFrame, "BOTTOMLEFT");
   					else
-  						linkFrame:SetPoint("BOTTOM", linkFromFrame, "CENTER");
-  						linkFrame:SetPoint("TOP", linkToFrame, "CENTER");
+  						linkFrame:SetPoint("BOTTOM", linkFromFrame, "TOP");
+  						linkFrame:SetPoint("TOP", linkToFrame, "BOTTOM");
   					end
   
   					local direction;

@@ -2,43 +2,43 @@
  	<Script file="Soulbinds.lua"></Script>
 
 	<Frame name="AltoSoulbindTreeNodeLinkTemplate" virtual="true">
-		<Size x="64" y="64"/>
+		<Size x="32" y="32"/>
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture parentKey="Background">
-					<Size x="12" y="53"/>
+					<Size x="6" y="26"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture parentKey="Foreground1" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Particles" useAtlasSize="true" alphaMode="ADD">
+				<Texture parentKey="Foreground1" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Particles" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="CENTER" relativeKey="$parent.Background" />
 					</Anchors>
 				</Texture>
-				<Texture parentKey="Foreground2" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Gold" useAtlasSize="true" alphaMode="ADD">
+				<Texture parentKey="Foreground2" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Gold" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="CENTER" relativeKey="$parent.Background" />
 					</Anchors>
 				</Texture>
-				<Texture parentKey="Foreground3" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Effect" useAtlasSize="true" alphaMode="ADD">
+				<Texture parentKey="Foreground3" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Effect" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="CENTER" relativeKey="$parent.Background" />
 					</Anchors>
 				</Texture>
-				<Texture parentKey="Foreground4" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Effect" useAtlasSize="true" alphaMode="ADD">
+				<Texture parentKey="Foreground4" parentArray="foregrounds" atlas="Azerite-CenterBG-ChannelGlowBar-Effect" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="CENTER" relativeKey="$parent.Background" />
 					</Anchors>
 				</Texture>
-				<Texture parentKey="Foreground5" parentArray="foregrounds" atlas="Soulbinds_Link_Spirits" useAtlasSize="true" alphaMode="ADD">
+				<Texture parentKey="Foreground5" parentArray="foregrounds" atlas="Soulbinds_Link_Spirits" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="CENTER" relativeKey="$parent.Background" />
 					</Anchors>
 				</Texture>
-				<Texture parentKey="Foreground6" parentArray="foregrounds" atlas="Soulbinds_Link_Spirits" useAtlasSize="true" alphaMode="ADD">
+				<Texture parentKey="Foreground6" parentArray="foregrounds" atlas="Soulbinds_Link_Spirits" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="CENTER" relativeKey="$parent.Background" />
 					</Anchors>
@@ -130,9 +130,6 @@
 			<OnLoad>
 				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsSoulbindTreeNode")
 			</OnLoad>
-			<OnClick>
-                self:OnClick()
-            </OnClick>
 			<OnEnter>
                 self:OnEnter()
             </OnEnter>
@@ -146,7 +143,7 @@
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture parentKey="Background" atlas="Soulbinds_Tree_Conduit_Background">
-					<Size x="56" y="57"/>
+					<Size x="28" y="28"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -154,7 +151,7 @@
 			</Layer>
 			<Layer level="ARTWORK" textureSubLevel="1">
 				<Texture parentKey="Icon">
-					<Size x="42" y="42"/>
+					<Size x="21" y="21"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -162,14 +159,14 @@
 			</Layer>
 			<Layer level="ARTWORK" textureSubLevel="2">
 				<Texture parentKey="IconOverlay">
-					<Size x="42" y="42"/>
+					<Size x="21" y="21"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
 					<Color color="BLACK_FONT_COLOR" a=".5"/>
 				</Texture>
 				<MaskTexture atlas="CircleMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
-					<Size x="40" y="40"/>
+					<Size x="20" y="20"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -181,13 +178,13 @@
 			</Layer>
 			<Layer level="OVERLAY" textureSubLevel="1">
 				<Texture parentKey="Ring">
-					<Size x="56" y="57"/>
+					<Size x="25" y="25"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
 				</Texture>
 				<Texture parentKey="RingOverlay" atlas="Soulbinds_Tree_Ring_Glow" hidden="true">
-					<Size x="56" y="57"/>
+					<Size x="25" y="25"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -201,7 +198,7 @@
 			</Layer>
 			<Layer level="OVERLAY" textureSubLevel="2">
 				<Texture parentKey="MouseOverlay" atlas="Soulbinds_Tree_Ring" hidden="true" alphaMode="ADD">
-					<Size x="56" y="57"/>
+					<Size x="28" y="28"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -216,7 +213,7 @@
 	</Button>
 
 	<Texture name="AltoConduitInstallTemplate" atlas="Soulbinds_Tree_Conduit_Ring" alphaMode="ADD" hidden="true" virtual="true">
-		<Size x="56" y="57"/>
+		<Size x="30" y="30"/>
 		<Anchors>
 			<Anchor point="CENTER"/>
 		</Anchors>
@@ -226,13 +223,13 @@
 		<Layers>
 			<Layer level="BACKGROUND" textureSubLevel="1">
 				<Texture parentKey="Background" atlas="Soulbinds_Tree_Conduit_Background">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
 				</Texture>
 				<Texture parentKey="Icon">
-					<Size x="38" y="38"/>
+					<Size x="19" y="19"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -240,14 +237,14 @@
 			</Layer>
 			<Layer level="BACKGROUND" textureSubLevel="2">
 				<Texture parentKey="IconOverlay">
-					<Size x="38" y="38"/>
+					<Size x="19" y="19"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
 					<Color color="BLACK_FONT_COLOR" a=".5"/>
 				</Texture>
 				<MaskTexture atlas="CircleMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
-					<Size x="40" y="40"/>
+					<Size x="20" y="20"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -259,7 +256,7 @@
 			</Layer>
 			<Layer level="OVERLAY" textureSubLevel="1" >
 				<Texture parentKey="Ring">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -267,7 +264,7 @@
 			</Layer>
 			<Layer level="OVERLAY" textureSubLevel="2" >
 				<Texture parentKey="PickupOverlay" parentArray="PickupAnimTextures" atlas="Soulbinds_Tree_Conduit_Ring" alphaMode="ADD" hidden="true">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -279,7 +276,7 @@
 					</Animations>
 				</Texture>
 				<Texture parentKey="PickupOverlay2" parentArray="PickupAnimTextures" atlas="Soulbinds_Tree_Conduit_Ring" alphaMode="ADD" hidden="true">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -291,7 +288,7 @@
 					</Animations>
 				</Texture>
 				<Texture parentKey="PickupArrowsOverlay" parentArray="PickupAnimTextures" atlas="Soulbinds_Tree_Conduit_Arrows" alphaMode="ADD" hidden="true">
-					<Size x="50" y="50"/>
+					<Size x="25" y="25"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -304,13 +301,13 @@
 					</Animations>
 				</Texture>
 				<Texture parentKey="PickupArrowsStatic" atlas="Soulbinds_Tree_Conduit_Arrows" alphaMode="ADD" hidden="true">
-					<Size x="50" y="50"/>
+					<Size x="25" y="25"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
 				</Texture>
 				<Texture parentKey="UnsocketedWarning" parentArray="UnsocketedWarningTextures" atlas="Soulbinds_Tree_Conduit_Ring" alphaMode="ADD" hidden="true">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -322,7 +319,7 @@
 					</Animations>
 				</Texture>
 				<Texture parentKey="UnsocketedWarning2" parentArray="UnsocketedWarningTextures" atlas="Soulbinds_Tree_Conduit_Ring" alphaMode="ADD" hidden="true">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -336,7 +333,7 @@
 			</Layer>
 			<Layer level="OVERLAY" textureSubLevel="3" >
 				<Texture parentKey="RingOverlay" atlas="Soulbinds_Tree_Conduit_Ring_Glow" hidden="true">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
@@ -348,15 +345,15 @@
 					</Animations>
 				</Texture>
 				<Texture parentKey="MouseOverlay" atlas="Soulbinds_Tree_Conduit_Ring" hidden="true" alphaMode="ADD">
-					<Size x="56" y="57"/>
+					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="CENTER"/>
 					</Anchors>
 				</Texture>
 				<Texture parentKey="EmblemBg">
-					<Size x="26" y="31"/>
+					<Size x="13" y="15"/>
 					<Anchors>
-						<Anchor point="BOTTOM" y="-16"/>
+						<Anchor point="BOTTOM" y="-5"/>
 					</Anchors>
 				</Texture>
 			</Layer>
@@ -398,7 +395,7 @@
 					</Animations>
 				</Texture>
 				<Texture parentKey="Ring7" parentArray="SocketAnimTextures" atlas="Soulbinds_Tree_Conduit_Arrows_Socketed" alphaMode="ADD" useAtlasSize="false">
-					<Size x="30" y="30"/>
+					<Size x="15" y="15"/>
 					<Anchors>
 						<Anchor point="CENTER" y="-1"/>
 					</Anchors>
@@ -410,50 +407,11 @@
 					</Animations>
 				</Texture>
 			</Layer>
-			<Layer level="OVERLAY" textureSubLevel="5">
-				<Texture parentKey="Pending" parentArray="PendingAnimTextures" atlas="Soulbinds_Tree_Conduit_Ring_PendingAnimation_Glow" hidden="true">
-					<Size x="62" y="63"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-			<Layer level="OVERLAY" textureSubLevel="6">
-				<Texture parentKey="PendingStick" parentArray="PendingAnimTextures" atlas="Soulbinds_Tree_Conduit_Ring_PendingAnimation_Stick" useAtlasSize="true" rotation="90" hidden="true">
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-					<Animations>
-						<AnimationGroup parentKey="RotateAnim" inherits="VisibleWhilePlayingAnimGroupTemplate" looping="REPEAT">
-							<Rotation duration="5" degrees="-360"/>
-						</AnimationGroup>
-					</Animations>
-				</Texture>
-				<Texture parentKey="PendingStick2" parentArray="PendingAnimTextures" atlas="Soulbinds_Tree_Conduit_Ring_PendingAnimation_Stick" useAtlasSize="true" hidden="true">
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-					<Animations>
-						<AnimationGroup parentKey="RotateAnim" inherits="VisibleWhilePlayingAnimGroupTemplate" looping="REPEAT">
-							<Rotation duration="5" degrees="-360"/>
-						</AnimationGroup>
-					</Animations>
-				</Texture>
-				<MaskTexture atlas="Soulbinds_Collection_Conduit_PendingAnimation_Mask" useAtlasSize="true" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-					<MaskedTextures>
-						<MaskedTexture childKey="PendingStick"/>
-						<MaskedTexture childKey="PendingStick2"/>
-					</MaskedTextures>
-				</MaskTexture>
-			</Layer>
 			<Layer level="OVERLAY" textureSubLevel="7" >
 				<Texture parentKey="Emblem">
-					<Size x="26" y="31"/>
+					<Size x="13" y="15"/>
 					<Anchors>
-						<Anchor point="BOTTOM" y="-16"/>
+						<Anchor point="BOTTOM" y="-5"/>
 					</Anchors>
 				</Texture>
 			</Layer>
@@ -475,7 +433,7 @@
 	</Button>
      
     <Frame name="AltoSoulbindTreeTemplate" virtual="true">
-		<Size x="244" y="304"/>
+		<Size x="200" y="304"/>
         <Anchors>
             <Anchor point="TOPLEFT"/>
         </Anchors>
@@ -506,12 +464,12 @@
             <Frame parentKey="Tree1" inherits="AltoSoulbindTreeTemplate" id="1"/>
             <Frame parentKey="Tree2" inherits="AltoSoulbindTreeTemplate" id="2">
                 <Anchors>
-        			<Anchor point="TOPLEFT" x="244" y="0"/>
+        			<Anchor point="TOPLEFT" x="200" y="0"/>
         		</Anchors>
             </Frame>
             <Frame parentKey="Tree3" inherits="AltoSoulbindTreeTemplate" id="3">
                 <Anchors>
-        			<Anchor point="TOPLEFT" x="488" y="0"/>
+        			<Anchor point="TOPLEFT" x="400" y="0"/>
         		</Anchors>
             </Frame>
 		</Frames>
