@@ -154,6 +154,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
         frame.Soulbinds = frame.MenuItem3
         frame.SanctumFeatures = frame.MenuItem4
         frame.AnimaDiversion = frame.MenuItem5
+        frame.Torghast = frame.MenuItem6
         
 		-- Localise section names
         frame.Overview:SetText(OVERVIEW)
@@ -161,6 +162,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
         frame.Soulbinds:SetText(COVENANT_PREVIEW_SOULBINDS)
         frame.SanctumFeatures:SetText(COVENANT_PREVIEW_SANCTUM_FEATURE)
         frame.AnimaDiversion:SetText(ANIMA_DIVERSION_ORIGIN_TOOLTIP)
+        frame.Torghast:SetText(C_Map.GetAreaInfo(10472))
 		
         -- Set section 1 as default
         frame:MenuItem_Highlight(1)
@@ -173,6 +175,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
         frame.SoulbindsPanel:Hide()
         frame.SanctumFeaturesPanel:Hide()
         frame.AnimaDiversionPanel:Hide()
+        frame.TorghastPanel:Hide()
 	end,
 	Refresh = function(frame)
         local key = ns:GetAltKey()
@@ -186,7 +189,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 	end,
 	MenuItem_Highlight = function(frame, id)
 		-- highlight the current menu item
-		for i = 1, 5 do 
+		for i = 1, 6 do 
 			frame["MenuItem"..i]:UnlockHighlight()
 		end
 		frame["MenuItem"..id]:LockHighlight()
