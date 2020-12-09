@@ -136,7 +136,7 @@ local function Tradeskill_OnEnter(frame, skillName, showRecipeStats)
 	tt:ClearLines()
 	tt:SetOwner(frame, "ANCHOR_RIGHT")
 	tt:AddLine(skillName,1,1,1)
-	tt:AddLine(format("%s%s/%s", GetSkillRankColor(curRank), curRank, maxRank),1,1,1)
+	tt:AddLine(format("%s%s/%s", GetSkillRankColor(curRank, maxRank), curRank, maxRank),1,1,1)
 	
 	if showRecipeStats then	-- for primary skills + cooking & first aid
 		-- if DataStore:GetProfessionSpellID(skillName) ~= 2366 and skillName ~= GetSpellInfo(8613) then		-- no display for herbalism & skinning
