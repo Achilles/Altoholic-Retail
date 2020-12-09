@@ -952,7 +952,7 @@ LibStub("LibCraftCategories-1.0").enUS = {
   [951]={["Name_lang"]="Mounts Equipment",["HordeName_lang"]="",["ID"]=1289,["ParentTradeSkillCategoryID"]=942,["SkillLineID"]=197,["OrderIndex"]=150,["Flags"]=0},
   [952]={["Name_lang"]="Mount Equipment",["HordeName_lang"]="",["ID"]=1290,["ParentTradeSkillCategoryID"]=647,["SkillLineID"]=333,["OrderIndex"]=60,["Flags"]=0},
   [953]={["Name_lang"]="Robots",["HordeName_lang"]="",["ID"]=1291,["ParentTradeSkillCategoryID"]=1257,["SkillLineID"]=2720,["OrderIndex"]=45,["Flags"]=0},
-  [954]={["Name_lang"]="Shadowlands Alchemy - Header",["HordeName_lang"]="",["ID"]=1293,["ParentTradeSkillCategoryID"]=0,["SkillLineID"]=171,["OrderIndex"]=940,["Flags"]=0},
+  [954]={["Name_lang"]="Shadowlands Alchemy - Header",["HordeName_lang"]="",["ID"]=1293,["ParentTradeSkillCategoryID"]=0,["SkillLineID"]=171,["OrderIndex"]=920,["Flags"]=0},
   [955]={["Name_lang"]="Shadowlands Alchemy",["HordeName_lang"]="",["ID"]=1294,["ParentTradeSkillCategoryID"]=1293,["SkillLineID"]=2750,["OrderIndex"]=920,["Flags"]=1},
   [956]={["Name_lang"]="Cauldrons",["HordeName_lang"]="",["ID"]=1295,["ParentTradeSkillCategoryID"]=1294,["SkillLineID"]=171,["OrderIndex"]=5,["Flags"]=0},
   [957]={["Name_lang"]="Combat Potions",["HordeName_lang"]="",["ID"]=1296,["ParentTradeSkillCategoryID"]=1294,["SkillLineID"]=171,["OrderIndex"]=10,["Flags"]=0},
