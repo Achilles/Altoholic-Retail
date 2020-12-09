@@ -1,4 +1,4 @@
---[[	*** LibCraftCategories ***
+--[[	*** LibGatheringNodes ***
 Author: Teelo
 11 October 2020
 
