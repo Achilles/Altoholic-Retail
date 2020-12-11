@@ -246,7 +246,6 @@ addon:Controller("AltoholicUI.ShadowlandsCallingQuest", {
 
 addon:Controller("AltoholicUI.ShadowlandsArdenwealdPanel", {
     OnBind = function(self)
-       self:SetPoint("TOPLEFT", self:GetParent().Title, "TOPRIGHT", 120, 0)
     end,
     
     Update = function(self)

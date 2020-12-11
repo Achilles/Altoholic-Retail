@@ -7,7 +7,6 @@
 ## LoadOnDemand: 1
 ## X-Category: Interface Enhancements
 
-Templates\UITemplates.xml
 TabShadowlands.xml
 
 Frames\Overview.xml

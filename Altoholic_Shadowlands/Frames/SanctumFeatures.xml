@@ -7,5 +7,8 @@
 				Altoholic:BindViewToController(self, "AltoholicUI.ShadowlandsSanctumFeatures")
 			</OnLoad>
 		</Scripts>
+        <Frames>
+            <Frame parentKey="ArdenwealdGardeningPanel" inherits="AltoArdenwealdGardeningPanelTemplate"/>
+        </Frames>
     </Frame>
 </Ui>
