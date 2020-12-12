@@ -125,13 +125,7 @@ function SoulbindConduitMixin:GetHyperlink()
 	return C_Soulbinds.GetConduitHyperlink(self:GetConduitID(), self:GetConduitRank());
 end
 
-local function SoulbindConduitMixin_Create(conduitID)
-	return CreateAndInitFromMixin(SoulbindConduitMixin, conduitID);
-end
-
 local Soulbinds = {};
-
-local SOULBINDS_RENOWN_CURRENCY_ID = 1822;
 
 local SOULBINDS_COVENANT_KYRIAN = 1;
 local SOULBINDS_COVENANT_VENTHYR = 2;
@@ -460,10 +454,7 @@ function SoulbindConduitNodeMixin:Reset()
 end
 
 function SoulbindConduitNodeMixin:SetConduit(conduitID, initializing)
-	local oldConduitID = self.conduit and self.conduit:GetConduitID() or 0;
-	self.conduit = SoulbindConduitMixin_Create(conduitID);
-	local newConduitID = self.conduit:GetConduitID();
-
+	self.conduit = CreateAndInitFromMixin(SoulbindConduitMixin, conduitID)
 	self:DisplayConduit();
 end
 
@@ -614,16 +605,6 @@ local CONDUIT_TEMPLATE = "AltoSoulbindConduitNodeTemplate";
 local TRAIT_TEMPLATE = "AltoSoulbindTraitNodeTemplate";
 local LINK_TEMPLATE = "AltoSoulbindTreeNodeLinkTemplate";
 local SELECT_ANIM_TEMPLATE = "PowerSwirlTemplate";
-
-local function GetConduitMismatchString(conduitType)
-	if conduitType == Enum.SoulbindConduitType.Potency then
-		return CONDUIT_TYPE_MISMATCH_POTENCY;
-	elseif conduitType == Enum.SoulbindConduitType.Endurance then
-		return CONDUIT_TYPE_MISMATCH_ENDURANCE;
-	elseif conduitType == Enum.SoulbindConduitType.Finesse then
-		return CONDUIT_TYPE_MISMATCH_FINESSE;
-	end
-end
 
 addon:Controller("AltoholicUI.ShadowlandsSoulbindTree", {
     OnBind = function(self)
@@ -788,7 +769,6 @@ addon:Controller("AltoholicUI.ShadowlandsSoulbindTree", {
     		local state = nodeFrame:GetState();
     		for _, linkFrame in ipairs(nodeFrame:GetLinks()) do
     			local linkToFrame = self.linkToFrames[linkFrame];
-    			local linkToFrameState = linkToFrame:GetState();
     			linkFrame:SetState(linkToFrame:IsSelected() and state or Enum.SoulbindNodeState.Unselected);
     		end
     	end

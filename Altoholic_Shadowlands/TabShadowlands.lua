@@ -1,7 +1,6 @@
 local addonName = "Altoholic"
 local addon = _G[addonName]
 local colors = addon.Colors
-local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 addon.Tabs.Shadowlands = {}
 
@@ -29,7 +28,7 @@ local function GetCharacterLoginText(character)
 			last = format("%s: %s", LASTONLINE, colors.yellow..date("%m/%d/%Y %H:%M", last))
 		end
 	else
-		last = format("%s: %s", LASTONLINE, colors.red..L["N/A"])
+		last = ""
 	end
 	return format("%s %s(%s%s)", (DataStore:GetColoredCharacterName(character) or ""), colors.white, last, colors.white)
 end
@@ -85,8 +84,6 @@ local function CharactersIcon_Initialize(self, level)
     local currentAccount, currentRealm, currentName = strsplit(".", currentCharacterKey)
     
 	if level == 1 then
-		DDM_AddTitle(L["Characters"])
-		
 		for account in pairs(DataStore:GetAccounts()) do
 			for realm in pairs(DataStore:GetRealms(account)) do
 

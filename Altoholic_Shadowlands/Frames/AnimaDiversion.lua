@@ -1,29 +1,11 @@
 local addonName = "Altoholic"
 local addon = _G[addonName]
-local colors = addon.Colors
-
-local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local ns = addon.Tabs.Shadowlands
 
 -- From Blizzard_AnimaDiversionUtil.lua
 
 local function IsNodeActive(nodeState)
 	return (nodeState == Enum.AnimaDiversionNodeState.SelectedTemporary) or (nodeState == Enum.AnimaDiversionNodeState.SelectedPermanent);
-end
-
-local function IsAnyNodeActive()
-	local animaNodes = DataStore:GetAnimaDiversionNodes(ns:GetAltKey()) 
-	if (not animaNodes) then 
-		return false;
-	end
-
-	for i, animaNode in ipairs(animaNodes) do
-		if (IsNodeActive(animaNode.state)) then
-			return true;
-		end
-	end
-
-	return false;
 end
 
 -- From Blizzard_AnimaDiersionUI\AnimaDiversionDataProvider.lua
@@ -155,13 +137,8 @@ function AnimaDiversionDataProviderMixin:RefreshAllData(fromOnShow)
 
 	self:AddOrigin(originPosition);
 
-	local hasAnyChanneledNodes = false;
 	for _, nodeData in ipairs(animaNodes) do
-		local wasChanneled = self:AddNode(nodeData);
-
-		if wasChanneled then
-			hasAnyChanneledNodes = true;
-		end
+		self:AddNode(nodeData)
 	end
 end
 
@@ -350,28 +327,6 @@ function AnimaDiversionPinMixin:OnMouseLeave()
 	GameTooltip:Hide();
 end
 
-function AnimaDiversionPinMixin:OnClick(button) 
-	if not self.nodeData then -- If we are the origin pin, don't do anything.
-		return;
-	end 
-
-	if AltoholicTabShadowlands.AnimaDiversionPanel.disallowSelection or button ~= "LeftButton" then	-- if selection is disabled or they didn't use left button, don't do anything.
-		return;
-	end
-
-	if self.owner:CanReinforceNode() then 
-		if self.nodeData.state == Enum.AnimaDiversionNodeState.Unavailable or self.nodeData.state == Enum.AnimaDiversionNodeState.SelectedPermanent then 
-			return;
-		end
-
-		AltoholicTabShadowlands.AnimaDiversionPanel.ReinforceInfoFrame:SelectNodeToReinforce(self);
-	else
-		if self.nodeData.state == Enum.AnimaDiversionNodeState.Available then 
-			StaticPopup_Show("ANIMA_DIVERSION_CONFIRM_CHANNEL", self.nodeData.name, nil, self);
-		end
-	end
-end
-
 addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPinTemplate", {
     OnBind = function(self)
         Mixin(self, AnimaDiversionPinMixin)
@@ -411,36 +366,9 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionConnectionTemplate", {
     end,
 })
 
--- From Blizzard_AnimaDiversionUI\AD_WorldQuestDataProvider.lua
-
-local AnimaDiversion_WorldQuestDataProviderMixin = CreateFromMixins(WorldQuestDataProviderMixin)
-
-function AnimaDiversion_WorldQuestDataProviderMixin:GetPinTemplate()
-	return "AltoAnimaDiversion_WorldQuestPinTemplate";
-end
-
-local AnimaDiversion_WorldQuestPinMixin = CreateFromMixins(WorldQuestPinMixin)
-
-function AnimaDiversion_WorldQuestPinMixin:OnLoad()
-	WorldQuestPinMixin.OnLoad(self);
-
-	self:SetAlphaLimits(2.0, 0.6, 0.6);
-	self:SetScalingLimits(1, 0.4125, 0.425);
-
-	self:SetNudgeTargetFactor(0.015);
-	self:SetNudgeZoomedOutFactor(1.0);
-	self:SetNudgeZoomedInFactor(0.25);
-end
-addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionWorldQuestPinTemplate", {
-    OnBind = function(self)
-        Mixin(self, AnimaDiversion_WorldQuestPinMixin)
-    end,
-})
-
 -- All this code adapted from Blizzard_AnimaDiversionUI.lua
 
-local ANIMA_GEM_TEXTURE_INFO = "AnimaChannel-Bar-%s-Gem";
-local OVERRIDE_MODEL_SCENE_FRAME_LEVEL = 511; 
+local ANIMA_GEM_TEXTURE_INFO = "AnimaChannel-Bar-%s-Gem"; 
 local MAX_ANIMA_GEM_COUNT = 10;  
 
 local fullGemsTextureKitAnimationEffectId = {
@@ -455,13 +383,6 @@ local newGemTextureKitAnimationEffectId = {
 	["Venthyr"] = 26,
 	["NightFae"] = 29,
 	["Necrolord"] = 32, 
-};
-
-local textureKitToCovenantId = {
-	["Kyrian"] = 1,
-	["Venthyr"] = 2,
-	["NightFae"] = 3,
-	["Necrolord"] = 4, 
 };
 
 addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
@@ -485,7 +406,7 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
         
     	self.covenantData = C_Covenants.GetCovenantData(covenantID)
         self.uiTextureKit = self.covenantData.textureKit
-    	local mapIDs = {["NightFae"] = 1739, ["Venthyr"] = 1738, ["Kyrion"] = 1813, ["Necrolord"] = 1814} -- TODO: ge the right names/numbers for other covenants
+    	local mapIDs = {["NightFae"] = 1739, ["Venthyr"] = 1738, ["Kyrian"] = 1813, ["Necrolord"] = 1814} -- TODO: ge the right names/numbers for other covenants
         self.mapID = mapIDs[self.uiTextureKit] 
     	self:SetupBolsterProgressBar();
     	self:SetupCurrencyFrame(); 
@@ -598,8 +519,7 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
     end,
 
     AddStandardDataProviders = function(self)
-    	self:AddDataProvider(CreateFromMixins(AnimaDiversionDataProviderMixin));
-    	self:AddDataProvider(CreateFromMixins(AnimaDiversion_WorldQuestDataProviderMixin));	
+    	self:AddDataProvider(CreateFromMixins(AnimaDiversionDataProviderMixin));	
     	local pinFrameLevelsManager = self:GetPinFrameLevelsManager(); 
     	pinFrameLevelsManager:AddFrameLevel("PIN_FRAME_LEVEL_WORLD_QUEST", 500);
     	pinFrameLevelsManager:AddFrameLevel("PIN_FRAME_LEVEL_ANIMA_DIVERSION_MODELSCENE_PIN");
@@ -613,7 +533,7 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionPanel", {
     SetupCurrencyFrame = function(self)
         local info = DataStore:GetAnimaCurrencyInfo(ns:GetAltKey())
         if not info then return end 
-    	local animaCurrencyID, maxDisplayableValue, count, icon = info.currencyID, info.maxDisplayable, info.count, info.icon
+    	local count, icon = info.count, info.icon
     	if(count) then 
     		self.AnimaDiversionCurrencyFrame.CurrencyFrame.Quantity:SetText(ANIMA_DIVERSION_CURRENCY_DISPLAY:format(count, icon));
     	end 
@@ -675,10 +595,7 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionReinforceInfoFrame", {
     end, 
 
     Init = function(self)
-    	self.canReinforce = self:CanReinforceAnything();
-    
-    	self.Title:SetText(ANIMA_DIVERSION_REINFORCE_READY);
-    	self.AnimaNodeReinforceButton:Disable(); 
+    	self.canReinforce = self:CanReinforceAnything() 
     end, 
 
     GetSelectedNode = function(self)
@@ -692,34 +609,4 @@ addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionReinforceInfoFrame", {
     
     	self.selectedNode = nil;
     end, 
-
-    SelectNodeToReinforce = function(self, node) 
-    	if not self.canReinforce or self.selectedNode == node or node.UnavailableState then 
-    		return; 
-    	end 
-    
-    	if self.selectedNode then 
-    		self.selectedNode:SetSelectedState(false); 
-    	end
-    
-    	self.selectedNode = node;
-    	node:SetReinforceState(true);
-    	node:SetSelectedState(true);
-    	self.Title:SetText(self.selectedNode.nodeData.name);
-    	self.AnimaNodeReinforceButton:Enable(); 
-    end,
 }) 
-
-addon:Controller("AltoholicUI.ShadowlandsAnimaDiversionReinforceButton", {
-    OnEnter = function(self)
-    	if (not self:GetParent().canReinforce) then 
-    		GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 20, 0);
-    		GameTooltip_AddErrorLine(GameTooltip, ANIMA_DIVERSION_CANT_REINFORCE);
-    		GameTooltip:Show(); 
-    	end 
-    end,
-    
-    OnLeave = function(self)
-    	GameTooltip:Hide(); 
-    end,
-})

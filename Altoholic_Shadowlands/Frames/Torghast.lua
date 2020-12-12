@@ -58,7 +58,6 @@ addon:Controller("AltoholicUI.ShadowlandsTorghastLevelPicker", {
     
     Update = function(self)
         local level = self:GetID()
-        local textureKit = self:GetParent():GetTextureKit()
         local data = DataStore:GetTorghastData(ns:GetAltKey())[self:GetParent():GetTextureKit()]
         local status = data.levels[level].status
         
@@ -130,7 +129,7 @@ addon:Controller("AltoholicUI.ShadowlandsTorghastLevelPickerRewardCircle", {
     			continuableContainer:AddContinuable(item);
     		else
     			local isCurrencyContainer = C_CurrencyInfo.IsCurrencyContainer(reward.id, reward.quantity); 
-    			if (IsCurrencyContainer) then 
+    			if (isCurrencyContainer) then 
     				local name, texture, quantity, quality = CurrencyContainerUtil.GetCurrencyContainerInfo(reward.id, quantity);
     				table.insert(self.currencyRewards, {id = reward.id, texture = texture, quantity = quantity, quality = quality, name = name, isCurrencyContainer = true, });
     			else 

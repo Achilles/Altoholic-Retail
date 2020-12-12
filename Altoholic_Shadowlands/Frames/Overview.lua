@@ -1,8 +1,6 @@
 local addonName = "Altoholic"
 local addon = _G[addonName]
-local colors = addon.Colors
 
-local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local ns = addon.Tabs.Shadowlands
 
 addon:Controller("AltoholicUI.ShadowlandsOverview", {
@@ -136,7 +134,7 @@ addon:Controller("AltoholicUI.ShadowlandsCallingQuest", {
         if not covenantData then return end
         
         local icon = 0
-        for questID, callingData in pairs(callings) do
+        for _, callingData in pairs(callings) do
             if id == 1 then
                 icon = callingData.icon
             end
@@ -155,7 +153,7 @@ addon:Controller("AltoholicUI.ShadowlandsCallingQuest", {
         local callings = DataStore:GetCallingQuests(ns:GetAltKey())
         
         local bang = nil 
-        for questID, callingData in pairs(callings) do
+        for questID in pairs(callings) do
             if id == 1 and questID ~= 0 then
                 bang = "Callings-Available"
             end
@@ -193,7 +191,7 @@ addon:Controller("AltoholicUI.ShadowlandsCallingQuest", {
         local callings = DataStore:GetCallingQuests(ns:GetAltKey())
         
         local questComplete = true 
-        for questID, callingData in pairs(callings) do
+        for questID in pairs(callings) do
             if id == 1 and questID ~= 0 then
                 questComplete = false
             end
@@ -215,7 +213,7 @@ addon:Controller("AltoholicUI.ShadowlandsCallingQuest", {
         local questID = nil
         local id = self:GetID()
         local callings = DataStore:GetCallingQuests(ns:GetAltKey()) 
-        for qid, callingData in pairs(callings) do
+        for qid in pairs(callings) do
             if id == 1 and qid ~= 0 then
                 questID = qid
             end

@@ -1,8 +1,5 @@
 local addonName = "Altoholic"
 local addon = _G[addonName]
-local colors = addon.Colors
-
-local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local ns = addon.Tabs.Shadowlands
 
 local g_covenantID;
@@ -11,17 +8,7 @@ local g_covenantData;
 -- All this code adapted from Blizzard_CovenantRenown.lua
 
 addon:Controller("AltoholicUI.ShadowlandsRenown", {
-	OnBind = function(self)
-		self:Hide()
-        
-    	local attributes =
-	   {
-		area = "left",
-		pushable = 0,
-		allowOtherPanels = 1,
-		width = 755,
-		height = 540,
-	   };    
+	OnBind = function(self)    
 	end,
     
 	Update = function(frame)
@@ -71,7 +58,7 @@ addon:Controller("AltoholicUI.ShadowlandsRenown", {
 		local levels = C_CovenantSanctumUI.GetRenownLevels(covenantID);
 		self.TrackFrame:Init(#levels);
 		local elements = self.TrackFrame:GetElements();
-		for i, levelInfo in ipairs(levels) do
+		for i in ipairs(levels) do
 			elements[i]:SetInfo(levels[i]);
 		end
 		self.maxLevel = levels[#levels].level;
@@ -194,7 +181,7 @@ addon:Controller("AltoholicUI.ShadowlandsRenownTrackFrame", {
 	   self.scrollTime = self.scrollTime + elapsed;
 	   local speed = 0;
 	   local runningTime = 0;
-	   for i, speedData in ipairs(self.scrollSpeeds) do
+	   for _, speedData in ipairs(self.scrollSpeeds) do
 	   	runningTime = runningTime + speedData.timeAfter;
 		if self.scrollTime >= runningTime then
 			speed = speedData.speed;
@@ -438,8 +425,7 @@ addon:Controller("AltoholicUI.ShadowlandsRenownLevel", {
 
     SetIcon = function(self)
 	   if not self.rewardInfo then return end
-       local icon, name, description = CovenantUtil.GetRenownRewardInfo(self.rewardInfo, GenerateClosure(self.SetIcon, self));
-	   self.Icon:SetTexture(icon);
+	   self.Icon:SetTexture((CovenantUtil.GetRenownRewardInfo(self.rewardInfo, GenerateClosure(self.SetIcon, self))))
     end,
 
     ApplyAlpha = function(self, alpha)
@@ -481,7 +467,7 @@ addon:Controller("AltoholicUI.ShadowlandsRenownLevel", {
 	   end
 	   if addRewards then
 		for i, rewardInfo in ipairs(rewards) do
-			local icon, name, description = CovenantUtil.GetRenownRewardInfo(rewardInfo, onItemUpdateCallback);
+			local _, name = CovenantUtil.GetRenownRewardInfo(rewardInfo, onItemUpdateCallback);
 			if name then
 				GameTooltip_AddNormalLine(GameTooltip, string.format(RENOWN_REWARD_TOOLTIP_REWARD_LINE, name));
 			end
