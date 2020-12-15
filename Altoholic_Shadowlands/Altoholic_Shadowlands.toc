@@ -15,3 +15,4 @@ Frames\Soulbinds.xml
 Frames\SanctumFeatures.xml
 Frames\AnimaDiversion.xml
 Frames\Torghast.xml
+Frames\Weeklies.xml

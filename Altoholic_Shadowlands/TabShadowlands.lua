@@ -144,22 +144,15 @@ addon:Controller("AltoholicUI.TabShadowlandsCharacterIcon", {
 addon:Controller("AltoholicUI.TabShadowlands", {
 	OnBind = function(frame)
         frame.ClassIcons:Update("THIS_ACCOUNT")
-    
-        -- Setup aliases
-        frame.Overview = frame.MenuItem1
-        frame.Renown = frame.MenuItem2
-        frame.Soulbinds = frame.MenuItem3
-        frame.SanctumFeatures = frame.MenuItem4
-        frame.AnimaDiversion = frame.MenuItem5
-        frame.Torghast = frame.MenuItem6
         
-		-- Localise section names
-        frame.Overview:SetText(OVERVIEW)
-		frame.Renown:SetText(COVENANT_SANCTUM_TAB_RENOWN)
-        frame.Soulbinds:SetText(COVENANT_PREVIEW_SOULBINDS)
-        frame.SanctumFeatures:SetText(COVENANT_PREVIEW_SANCTUM_FEATURE)
-        frame.AnimaDiversion:SetText(ANIMA_DIVERSION_ORIGIN_TOOLTIP)
-        frame.Torghast:SetText(C_Map.GetAreaInfo(10472))
+		-- Localise menu names
+        frame.MenuItem1:SetText(OVERVIEW)
+		frame.MenuItem2:SetText(COVENANT_SANCTUM_TAB_RENOWN)
+        frame.MenuItem3:SetText(COVENANT_PREVIEW_SOULBINDS)
+        frame.MenuItem4:SetText(COVENANT_PREVIEW_SANCTUM_FEATURE)
+        frame.MenuItem5:SetText(ANIMA_DIVERSION_ORIGIN_TOOLTIP)
+        frame.MenuItem6:SetText(C_Map.GetAreaInfo(10472))
+        frame.MenuItem7:SetText(GREAT_VAULT_REWARDS)
 		
         -- Set section 1 as default
         frame:MenuItem_Highlight(1)
@@ -173,6 +166,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
         frame.SanctumFeaturesPanel:Hide()
         frame.AnimaDiversionPanel:Hide()
         frame.TorghastPanel:Hide()
+        frame.WeeklyRewardsPanel:Hide()
 	end,
 	Refresh = function(frame)
         local key = ns:GetAltKey()
@@ -186,7 +180,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 	end,
 	MenuItem_Highlight = function(frame, id)
 		-- highlight the current menu item
-		for i = 1, 6 do 
+		for i = 1, 7 do 
 			frame["MenuItem"..i]:UnlockHighlight()
 		end
 		frame["MenuItem"..id]:LockHighlight()

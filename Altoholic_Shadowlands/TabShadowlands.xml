@@ -101,7 +101,14 @@
 					<KeyValue key="panel" value="TorghastPanel" />
 				</KeyValues>
             </Button>
-            
+            <Button parentKey="MenuItem7" inherits="AltoShadowlandsMenuItemTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem6" relativePoint="BOTTOMLEFT" x="0" y="0" />
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="panel" value="WeeklyRewardsPanel" />
+				</KeyValues>
+            </Button>
             <Frame parentKey="ContextualMenu" inherits="AltoContextualMenuTemplate" />
 		</Frames>
 		<Scripts>
