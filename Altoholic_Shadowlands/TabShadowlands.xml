@@ -66,7 +66,7 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem1" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="RenownPanel" />
+					<KeyValue key="panel" value="ReservoirPanel" />
 				</KeyValues>
 			</Button>
             <Button parentKey="MenuItem3" inherits="AltoShadowlandsMenuItemTemplate" id="3">
@@ -74,7 +74,7 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem2" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="SoulbindsPanel" />
+					<KeyValue key="panel" value="RenownPanel" />
 				</KeyValues>
 			</Button>
             <Button parentKey="MenuItem4" inherits="AltoShadowlandsMenuItemTemplate" id="4">
@@ -82,7 +82,7 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem3" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="SanctumFeaturesPanel" />
+					<KeyValue key="panel" value="SoulbindsPanel" />
 				</KeyValues>
             </Button>
             <Button parentKey="MenuItem5" inherits="AltoShadowlandsMenuItemTemplate" id="5">
@@ -90,7 +90,7 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem4" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="AnimaDiversionPanel" />
+					<KeyValue key="panel" value="SanctumFeaturesPanel" />
 				</KeyValues>
             </Button>
             <Button parentKey="MenuItem6" inherits="AltoShadowlandsMenuItemTemplate" id="6">
@@ -98,12 +98,20 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem5" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
-					<KeyValue key="panel" value="TorghastPanel" />
+					<KeyValue key="panel" value="AnimaDiversionPanel" />
 				</KeyValues>
             </Button>
             <Button parentKey="MenuItem7" inherits="AltoShadowlandsMenuItemTemplate" id="7">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem6" relativePoint="BOTTOMLEFT" x="0" y="0" />
+				</Anchors>
+				<KeyValues>
+					<KeyValue key="panel" value="TorghastPanel" />
+				</KeyValues>
+            </Button>
+            <Button parentKey="MenuItem8" inherits="AltoShadowlandsMenuItemTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem7" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 				<KeyValues>
 					<KeyValue key="panel" value="WeeklyRewardsPanel" />

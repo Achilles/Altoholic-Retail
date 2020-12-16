@@ -147,12 +147,13 @@ addon:Controller("AltoholicUI.TabShadowlands", {
         
 		-- Localise menu names
         frame.MenuItem1:SetText(OVERVIEW)
-		frame.MenuItem2:SetText(COVENANT_SANCTUM_TAB_RENOWN)
-        frame.MenuItem3:SetText(COVENANT_PREVIEW_SOULBINDS)
-        frame.MenuItem4:SetText(COVENANT_PREVIEW_SANCTUM_FEATURE)
-        frame.MenuItem5:SetText(ANIMA_DIVERSION_ORIGIN_TOOLTIP)
-        frame.MenuItem6:SetText(C_Map.GetAreaInfo(10472))
-        frame.MenuItem7:SetText(GREAT_VAULT_REWARDS)
+        frame.MenuItem2:SetText(COVENANT_SANCTUM_TAB_UPGRADES)
+		frame.MenuItem3:SetText(COVENANT_SANCTUM_TAB_RENOWN)
+        frame.MenuItem4:SetText(COVENANT_PREVIEW_SOULBINDS)
+        frame.MenuItem5:SetText(COVENANT_PREVIEW_SANCTUM_FEATURE)
+        frame.MenuItem6:SetText(ANIMA_DIVERSION_ORIGIN_TOOLTIP)
+        frame.MenuItem7:SetText(C_Map.GetAreaInfo(10472))
+        frame.MenuItem8:SetText(GREAT_VAULT_REWARDS)
 		
         -- Set section 1 as default
         frame:MenuItem_Highlight(1)
@@ -180,7 +181,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
 	end,
 	MenuItem_Highlight = function(frame, id)
 		-- highlight the current menu item
-		for i = 1, 7 do 
+		for i = 1, 8 do 
 			frame["MenuItem"..i]:UnlockHighlight()
 		end
 		frame["MenuItem"..id]:LockHighlight()
