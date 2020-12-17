@@ -168,6 +168,7 @@ addon:Controller("AltoholicUI.TabShadowlands", {
         frame.AnimaDiversionPanel:Hide()
         frame.TorghastPanel:Hide()
         frame.WeeklyRewardsPanel:Hide()
+        frame.ReservoirPanel:Hide()
 	end,
 	Refresh = function(frame)
         local key = ns:GetAltKey()

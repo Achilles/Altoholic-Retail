@@ -188,7 +188,7 @@
 		</Scripts>
 	</Frame>
 
-    <Frame parentKey="ReservoirPanel" parent="AltoholicTabShadowlands" hidden="true" enableMouse="true">
+    <Frame parentKey="ReservoirPanel" parent="AltoholicTabShadowlands" hidden="true">
 		<Anchors>
 			<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="180" y="-120"/>
             <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>

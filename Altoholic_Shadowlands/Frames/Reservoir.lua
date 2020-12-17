@@ -101,6 +101,11 @@ addon:Controller("AltoholicUI.ShadowlandsReservoirPanel", {
     end,
 
     Update = function(self)
+        if not DataStore:GetCovenantFeatures(ns:GetAltKey()) or (#DataStore:GetCovenantFeatures(ns:GetAltKey()) == 0) then
+            self:Hide()
+            return
+        end
+            
         self:SetCovenantInfo()
         self:SetUpCurrencies();
         self:Show()
@@ -280,6 +285,7 @@ addon:Controller("AltoholicUI.ShadowlandsReservoirTalentsList", {
     
     	local treeID = self:GetParent():GetSelectedTree();
     	local treeInfo = C_Garrison.GetTalentTreeInfo(treeID);
+        treeInfo.talents = DataStore:GetGarrisonTalentTreeTalents(ns:GetAltKey(), treeID)
     	table.sort(treeInfo.talents, SortTalents);
     
     	self.upgradeTalentID = nil;
@@ -500,6 +506,7 @@ addon:Controller("AltoholicUI.ShadowlandsReservoirUpgradeTree", {
     Refresh = function(self)
     	local treeInfo = C_Garrison.GetTalentTreeInfo(self.treeID);
     	if treeInfo then
+            treeInfo.talents = DataStore:GetGarrisonTalentTreeTalents(ns:GetAltKey(), self.treeID)
     		self.tier = GetCurrentTier(treeInfo.talents);
     		if self.tier == 0 then
     			self.Tier:SetText(nil);
@@ -564,6 +571,7 @@ addon:Controller("AltoholicUI.ShadowlandsReservoirUpgradeTree", {
     RefreshTooltip = function(self)
     	local treeInfo = C_Garrison.GetTalentTreeInfo(self.treeID);
     	if treeInfo then
+            treeInfo.talents = DataStore:GetGarrisonTalentTreeTalents(ns:GetAltKey(), self.treeID)
     		local timeRemaining;
     		for i, talentInfo in ipairs(treeInfo.talents) do
     			if talentInfo.isBeingResearched and not talentInfo.hasInstantResearch then
