@@ -498,6 +498,7 @@ local function ShowGatheringNodeCounters()
 
 	-- filter out the damn arrow icon that sometimes appears for some reason, and any gray text colouring
     local nodeName = _G["GameTooltipTextLeft1"]:GetText()
+    if not nodeName then return end
     nodeName = nodeName:gsub("|T.*|t", ""):gsub("|c........", ""):gsub("|r", "")
     
     local itemIDs = {LGN.getItemID(nodeName)}
