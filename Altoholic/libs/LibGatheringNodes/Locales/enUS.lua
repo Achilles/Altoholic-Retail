@@ -22,7 +22,7 @@ LibStub('LibGatheringNodes-1.0').enUS = {
 	["Large Obsidian Chunk"] = 		 {22202, 22203, },
 	["Leystone Deposit"] = 		 {123918, },
 	["Leystone Seam"] = 		 {123918, },
-	["Mithril Deposit"] = 		 {3858, 7912, 108300, 2771, 2836, },
+	["Mithril Deposit"] = 		 {3858, 7912, 108300, },
 	["Monelite Deposit"] = 		 {152512, },
 	["Monelite Seam"] = 		 {152512, },
 	["Nethercite Deposit"] = 		 {23427, },
@@ -76,7 +76,7 @@ LibStub('LibGatheringNodes-1.0').enUS = {
 	["Titanium Vein"] = 		 {36910, 108391, },
 	["Trillium Vein"] = 		 {72094, 72103, },
 	["True Iron Deposit"] = 		 {115508, 109119, 109991, },
-	["Truesilver Deposit"] = 		 {7911, 108299, 2771, 2836, },
+	["Truesilver Deposit"] = 		 {7911, 108299, },
 
 	["Adder's Tongue"] = 		 {36903, 36908, },
 	["Aethril"] = 		 {124101, 128304, 129284, },
