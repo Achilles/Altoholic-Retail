@@ -16,6 +16,10 @@ addon:Controller("AltoholicUI.ShadowlandsWeekliesPanel", {
     end,
     
     Update = function(self)
+        if not DataStore_Keystones then
+            self:Hide()
+            return
+        end
         self:Show()
     end,
 
