@@ -192,8 +192,10 @@ addon:Controller("AltoholicUI.ShadowlandsWeekliesActivity", {
     				table.sort(runHistory, comparison);
     				for i = 1, self.info.threshold do
     					local runInfo = runHistory[i];
-    					local name = C_ChallengeMode.GetMapUIInfo(runInfo.mapChallengeModeID);
-    					GameTooltip_AddHighlightLine(GameTooltip, string.format(WEEKLY_REWARDS_MYTHIC_RUN_INFO, runInfo.level, name));
+                        if runInfo then
+    					   local name = C_ChallengeMode.GetMapUIInfo(runInfo.mapChallengeModeID);
+    					   GameTooltip_AddHighlightLine(GameTooltip, string.format(WEEKLY_REWARDS_MYTHIC_RUN_INFO, runInfo.level, name));
+                        end
     				end
     			end
     		end
