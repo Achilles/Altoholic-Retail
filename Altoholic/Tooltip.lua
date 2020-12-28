@@ -508,16 +508,32 @@ local function ShowGatheringNodeCounters()
 		isNodeDone = true
 	end
 
-	-- check player bags to see how many times he owns this item, and where
+	-- check player bags to see how many times they own this item, and where
 	if addon:GetOption("UI.Tooltip.ShowItemCount") or addon:GetOption("UI.Tooltip.ShowTotalItemCount") then
         local firstShown = false
+        local previousHadCounters = false
         for _, itemID in pairs(itemIDs) do
             if addon:GetOption("UI.Tooltip.ShowOnlyFirstGatheringItem") and firstShown then return true end
 		    cachedCount = GetItemCount(itemID) -- if one of the 2 options is active, do the count
 		    cachedTotal = (cachedCount > 0) and format("%s: %s", colors.gold..L["Total owned"], colors.teal..cachedCount) or nil
             local _, itemLink = GetItemInfo(itemID)
             if itemLink then
-            	GameTooltip:AddLine(" ",1,1,1);
+            	if (not firstShown) or previousHadCounters then
+                    -- Only put a linebreak if:
+                    -- 1. Its the first item, to separate from the name of the node
+                    -- 2. The previous item didn't have any counters displayed
+                    -- Tooltip for a node that drops 5 items, where the player has only one of those items already, will look like:
+                    -- Node name
+                    -- 
+                    -- Item 1
+                    -- Item 2
+                    -- Item 3
+                    -- Quantity
+                    -- 
+                    -- Item 4
+                    -- Item 5
+                    GameTooltip:AddLine(" ",1,1,1);
+                end
             	GameTooltip:AddLine(itemLink,1,1,1);
               	if #counterLines > 0 then
                 	if addon:GetOption("UI.Tooltip.ShowItemCount") then			-- add count per character/guild
@@ -525,6 +541,9 @@ local function ShowGatheringNodeCounters()
                 			GameTooltip:AddDoubleLine(line.owner,  colors.teal .. line.info);
                 		end
                 	end
+                    previousHadCounters = true
+                else
+                    previousHadCounters = false
                 end
                 WriteTotal(GameTooltip)
                 firstShown = true
