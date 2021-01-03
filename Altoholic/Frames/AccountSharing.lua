@@ -989,8 +989,8 @@ local function ongoingAddButtonClicked()
     local numTargets = addon:GetOption("UI.Sharing.Ongoing.NumTargets")
     if not numTargets then numTargets = 0 end
     
-    local characterName = AltoAccountSharingTab2_CharacterNameEditBox:GetText()
-    local realmName = AltoAccountSharingTab2_RealmNameEditBox:GetText()
+    local characterName = AltoAccountSharingOngoingTab_CharacterNameEditBox:GetText()
+    local realmName = AltoAccountSharingOngoingTab_RealmNameEditBox:GetText()
     
     if (not characterName) or (characterName == "") then return end
     if (not realmName) or (realmName == "") then return end
