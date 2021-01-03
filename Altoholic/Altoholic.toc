@@ -16,8 +16,6 @@
 ## X-Website: https://www.curseforge.com/wow/addons/altoholic-retail
 ## X-Github: https://github.com/teelolws/Altoholic-Retail
 ## X-Donate: https://www.patreon.com/teelojubeithos
-## X-Curse-Project-ID: 384785
-## X-WoWI-ID: 25610
 ## Dependencies: DataStore, DataStore_Characters
 
 ## OptionalDeps: Ace3, LibDataBroker-1.1, LibPeriodicTable-3.1, LibBabble-Boss-3.0, LibBabble-Inventory-3.0
