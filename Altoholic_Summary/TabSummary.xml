@@ -62,6 +62,11 @@
 					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem8" relativePoint="BOTTOMLEFT" x="0" y="0" />
 				</Anchors>
 			</Button>
+            <Button parentKey="MenuItem10" inherits="AltoTabSummaryMenuItemTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.MenuItem9" relativePoint="BOTTOMLEFT" x="0" y="0" />
+				</Anchors>
+			</Button>
 			
 			<Button parentKey="RealmsIcon" inherits="AltoTabSummaryIconTemplate" id="1">
 				<Anchors>
@@ -206,11 +211,12 @@
 				self.MenuItem2:SetText(L["Bag Usage"])
 				self.MenuItem3:SetText(SKILLS)
 				self.MenuItem4:SetText(L["Activity"])
-				self.MenuItem5:SetText(CURRENCY)
-				self.MenuItem6:SetText(GARRISON_FOLLOWERS_TITLE)
-                self.MenuItem7:SetText(PVEFrameTab3:GetText())
-                self.MenuItem8:SetText("Misc")
-                self.MenuItem9:SetText(L["Equipment"])
+				self.MenuItem5:SetText("Bank")
+				self.MenuItem6:SetText(CURRENCY)
+                self.MenuItem7:SetText(GARRISON_FOLLOWERS_TITLE)
+                self.MenuItem8:SetText(PVEFrameTab3:GetText())
+                self.MenuItem9:SetText("Misc")
+                self.MenuItem10:SetText(L["Equipment"])
 					
 				self.RequestSharing:SetText(L["Account Sharing"])
 				

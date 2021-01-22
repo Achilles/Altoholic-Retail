@@ -10,11 +10,12 @@ local MODE_SUMMARY = 1
 local MODE_BAGS = 2
 local MODE_SKILLS = 3
 local MODE_ACTIVITY = 4
-local MODE_CURRENCIES = 5
-local MODE_FOLLOWERS = 6
-local MODE_KEYSTONES = 7
-local MODE_HEARTHSTONE = 8
-local MODE_GEAR = 9
+local MODE_BANK = 5
+local MODE_CURRENCIES = 6
+local MODE_FOLLOWERS = 7
+local MODE_KEYSTONES = 8
+local MODE_HEARTHSTONE = 9
+local MODE_GEAR = 10
 
 local SKILL_CAP = 900
 local CURRENCY_ID_JUSTICE = 395
@@ -2061,7 +2062,7 @@ columns["ConquestPoints"] = {
 
 columns["RenownLevel"] = {
 	-- Header
-	headerWidth = 90,
+	headerWidth = 70,
 	headerLabel = COVENANT_SANCTUM_TAB_RENOWN,
 	tooltipTitle = COVENANT_SANCTUM_TAB_RENOWN,
 	tooltipSubTitle = nil,
@@ -2069,7 +2070,7 @@ columns["RenownLevel"] = {
 	headerSort = DataStore.GetRenownLevel,
 	
 	-- Content
-	Width = 90,
+	Width = 70,
 	JustifyH = "CENTER",
 	GetText = function(character)
             local count = DataStore:GetRenownLevel(character) or 0
@@ -2081,6 +2082,39 @@ columns["RenownLevel"] = {
 			return format("%s%s", color, count) 
 		end,
 	OnEnter = function(frame)
+		end,
+}
+
+columns["MountEquipment"] = {
+	-- Header
+	headerWidth = 120,
+	headerLabel = MOUNT_EQUIPMENT_LEVEL_UP_FEATURE,
+	tooltipTitle = MOUNT_EQUIPMENT_LEVEL_UP_FEATURE,
+	tooltipSubTitle = nil,
+	headerOnClick = nil,
+	headerSort = nil,
+	
+	-- Content
+	Width = 120,
+	JustifyH = "CENTER",
+	GetText = function(character)
+            local itemID = DataStore:GetMountEquipment(character)
+            if itemID then
+                return (GetItemInfo(itemID)) or ""
+            else
+                return ""
+            end
+		end,
+	OnEnter = function(frame)
+            local character = frame:GetParent().character
+            local itemID = DataStore:GetMountEquipment(character)
+            if itemID then
+                local tt = AltoTooltip
+                tt:ClearLines()
+                tt:SetOwner(frame, "ANCHOR_RIGHT")
+                tt:SetItemByID(itemID)
+                tt:Show()
+            end
 		end,
 }
 
@@ -2155,14 +2189,15 @@ end
 
 local modes = {
 	[MODE_SUMMARY] = { "Name", "Level", "RestXP", "Money", "Played", "AiL", "LastOnline" },
-	[MODE_BAGS] = { "Name", "Level", "BagSlots", "FreeBagSlots", "BankSlots", "FreeBankSlots" },
+	[MODE_BAGS] = { "Name", "Level", "BagSlots", "FreeBagSlots", },
 	[MODE_SKILLS] = { "Name", "Level", "Prof1", "Prof2", "ProfCooking", "ProfFishing", "ProfArchaeology" },
 	[MODE_ACTIVITY] = { "Name", "Level", "Mails", "LastMailCheck", "Auctions", "Bids", "AHLastVisit", "MissionTableLastVisit" },
+    [MODE_BANK] = { "Name", "BankSlots", "FreeBankSlots", "FreeReagentBankSlots", "FreeVoidStorageSlots" },
     [MODE_CURRENCIES] = { "Name", "Level", "Currency1", "Currency2", "Currency3", "Currency4", "Currency5" },
 	[MODE_FOLLOWERS] = { "Name", "Level", "FollowersLV40", "FollowersEpic", "FollowersLV630", "FollowersLV660", "FollowersLV675", "FollowersItems" },
     [MODE_KEYSTONES] = { "Name", "CurrentKeystoneName", "CurrentKeystoneLevel", "HighestKeystoneName", "HighestKeystoneLevel", "HighestKeystoneTime" },
-    [MODE_HEARTHSTONE] = { "Name", "BindLocation", "ConquestPoints", "RenownLevel", "FreeReagentBankSlots", "FreeVoidStorageSlots" },
-    [MODE_GEAR] = {"Name", }
+    [MODE_HEARTHSTONE] = { "Name", "BindLocation", "ConquestPoints", "RenownLevel", "MountEquipment", },
+    [MODE_GEAR] = {"Name", },
 }
 
 for i = 1, 19 do
